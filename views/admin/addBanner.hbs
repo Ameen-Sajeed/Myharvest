@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Mannat Themes">
+    <meta name="keyword" content="">
+
+    <title>SYNTRA | Responsive Web App Kit</title>
+
+    <!-- Theme icon -->
+    <link rel="shortcut icon" href="/Admin/images/favicon.ico">
+
+    <!-- Theme Css -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="/Admin/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/Admin/css/slidebars.min.css" rel="stylesheet">
+    <link href="/Admin/css/icons.css" rel="stylesheet">
+    <link href="/Admin/css/menu.css" rel="stylesheet" type="text/css">
+    <link href="/Admin/css/style.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body class="sticky-header">
+    <section>
+        <!-- sidebar left start-->
+        <div class="sidebar-left  md-6">
+            <div class="sidebar-left-info">
+
+                <div class="user-box">
+                    <div class="d-flex justify-content-center">
+                        <img src="/Admin/images/users/WhatsApp Image 2022-07-30 at 10.23.13 AM.jpeg" alt=""
+                            class="img-fluid rounded-circle">
+                    </div>
+                    <div class="text-center text-white mt-2">
+                        <h6>Amien Sajeed</h6>
+                        <p class="text-muted m-0">Admin</p>
+                    </div>
+                </div>
+
+                <!--sidebar nav start-->
+                <ul class="side-navigation">
+                    <li>
+                    </li>
+                    <li class="active">
+                        <a href="/admindashboard"><i class="mdi mdi-gauge"></i> <span>Dashboard</span></a>
+                    </li>
+                    <li>
+                    </li>
+                    <li class="menu-lists"><a href="/admin-users"><i class="fa fa-user-circle"></i> <span>Users <span
+                                    class="badge badge-primary noti-arrow pull-right"></span> </span></a>
+              
+                    </li>
+                    <li class="menu-list"><a href="/admin/admin-products"><i class="mdi mdi-diamond"></i>
+                            <span>Products</span></a>
+                        <ul class="child-list">
+                            <li><a href="/admin-addproducts"> Add a Product </a></li>
+                            <li><a href="/admin-products"> View Products</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-list"><a href="javascript:;"><i class="mdi mdi-table"></i> <span>Banner</span></a>
+                        <ul class="child-list">
+                            <li><a href="/admin-addbanner"> Add a Banner</a></li>
+                            <li><a href="/admin-banner"> View Banners</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="menu-lists"><a href="/admin-orders"><i class="mdi mdi-table"></i> <span>Order Management </span></a>
+                    </li>
+                    <li class="menu-list"><a href=""><i class="mdi mdi-google-earth"></i> <span> Offers & Coupons
+                            </span></a>
+                         <ul class="child-list">
+                                <li><a href="/admin-addcoupen">Add Coupons</a></li>
+                                <li><a href="/admin-viewcoupen">View Coupons</a></li> 
+                              <li><a href="/admin-addCatOffer">Add Category Offer</a></li>
+                                <li><a href="/admin-ViewCatoffer">View Category Offers</a></li>                                 <li><a href="form-advanced.html">Add Product Offer</a></li>
+                                <li><a href="form-wizard.html">View Product Offers</a></li>
+                              
+                            </ul> 
+                    </li>
+                    <li class="menu-lists"><a href="/admin-category"><i class="mdi mdi-chart-arc"></i> <span> Category Management</span></a>
+                    </li>
+                    <li class="menu-lists"><a href="/admin-login"><i class="mdi mdi-email"
+                                aria-hidden="true"></i><span>Log Out </span></a>
+                    </li>
+                </ul>
+                <!--sidebar nav end-->
+            </div>
+        </div><!-- sidebar left end-->
+
+        <!-- body content start-->
+        <div class="body-content ">
+            <!-- header section start-->
+          <div class="header-section">
+                <!--logo and logo icon start-->
+                
+                <div class="logo bg-light">
+                    <a href="index.html">
+                        <span class="logo-img" style="padding-bottom: 50px;">
+                            <img src="/User/images/logo/looo-removebg-preview.png" style="padding-bottom: 52px";
+                                alt="" height="100px">
+                        </span>
+                      
+                        <!--<i class="fa fa-maxcdn"></i>-->
+                     {{!-- <h3> <span class="brand-name" style="font-family: cursive;">Harvest </span>  </h1>    --}}
+                    </a>
+                </div>
+
+                <!--toggle button start-->
+                {{!-- <a class="toggle-btn"><i class="ti ti-menu"></i></a> --}}
+                <!--toggle button end-->
+
+                {{!-- <!--mega menu start-->
+                <div id="navbar-collapse-1" class="navbar-collapse collapse mega-menu">
+                    <ul class="nav navbar-nav">
+                        <!-- Classic dropdown -->
+                    
+                        <!-- Classic list -->
+                        <li>
+                            <form class="search-content" action="index.html" method="post">
+                                <input type="text" class="form-control mt-3" name="keyword" placeholder="Search...">
+                                <span class="search-button"><i class="ti ti-search"></i></span>
+                            </form>
+                        </li>
+                    </ul>
+                </div> --}}
+                <!--mega menu end-->
+
+              
+            </div>
+            <!-- header section end-->
+
+            <div class="container-fluid">
+                <div class="page-head">
+                    <h4 class="my-2">Add a Banner</h4>
+                    <form class="form-horizontal " method="post" action="/admin-addbanner"
+                        enctype="multipart/form-data">
+                        <fieldset>
+
+                            <!-- Form Name -->
+                            <!-- <legend>PRODUCTS</legend> -->
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" name="product" for="product_id">BANNER ID</label>
+                                <div class="col-md-4">
+                                    <input id="product_id" name="index" placeholder="PRODUCT ID"
+                                        class="form-control input-md" required="" type="text">
+
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="product_name">BANNER NAME</label>
+                                <div class="col-md-4">
+                                    <input id="product_name" name="name" placeholder="PRODUCT NAME"
+                                        class="form-control input-md" required="" type="text">
+
+                                </div>
+                            </div>
+
+
+                        
+
+                            <!-- Text input-->
+                            {{!-- <div class="form-group">
+                                <label class="col-md-4 control-label" for="available_quantity">INVENTORY</label>
+                                <div class="col-md-4">
+                                    <input id="available_quantity" name="inventory" placeholder="AVAILABLE QUANTITY"
+                                        class="form-control input-md" required="" type="number">
+
+                                </div>
+                            </div> --}}
+
+                            <!-- Textarea -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="product_description">Banner
+                                    DESCRIPTION</label>
+                                <div class="col-md-4">
+                                    <textarea class="form-control" id="description" name="description1" required=""></textarea>
+                                </div>
+                            </div>
+
+                             <div class="form-group">
+                                <label class="col-md-4 control-label" for="product_description">Banner
+                                    DESCRIPTION</label>
+                                <div class="col-md-4">
+                                    <textarea class="form-control" id="description" name="description2" required=""></textarea>
+                                </div>
+                            </div>
+
+                             <div class="form-group">
+                                <label class="col-md-4 control-label" for="product_description">Banner
+                                    DESCRIPTION</label>
+                                <div class="col-md-4">
+                                    <textarea class="form-control" id="description" name="description3" required=""></textarea>
+                                </div>
+                            </div>
+
+
+
+                            <!-- Text input-->
+                            {{!-- <div class="form-group">
+                                <label class="col-md-4 control-label" for="percentage_discount">PRICE</label>
+                                <div class="col-md-4">
+                                    <input id="percentage_discount" name="price" placeholder="Price of Product"
+                                        class="form-control input-md" required="" type="number">
+
+                                </div>
+                            </div> --}}
+
+                            <!-- File Button -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="filebutton">Choose an image</label>
+                                <div class="col-md-4">
+                                    <input id="filebutton" name="image" class="input-file" type="file" >
+                                </div>
+                            </div>
+                              {{!-- <div class="form-group">
+                                <label class="col-md-4 control-label" for="filebutton">Choose an image</label>
+                                <div class="col-md-4">
+                                    <input id="filebutton" name="image" class="input-file" type="file" >
+                                </div>
+                            </div> --}}
+                              {{!-- <div class="form-group">
+                                <label class="col-md-4 control-label" for="filebutton">Choose an image</label>
+                                <div class="col-md-4">
+                                    <input id="filebutton" name="image" class="input-file" type="file">
+                                </div>
+                            </div> --}}
+                              {{!-- <div class="form-group">
+                                <label class="col-md-4 control-label" for="filebutton">Choose an image</label>
+                                <div class="col-md-4">
+                                    <input id="filebutton" name="image" class="input-file" type="file">
+                                </div>
+                            </div> --}}
+                            <!-- File Button -->
+                            {{!-- <div class="form-group">
+                                <label class="col-md-4 control-label" for="filebutton">auxiliary_images</label>
+                                <div class="col-md-4">
+                                    <input id="filebutton" name="filebutton" class="input-file" type="file">
+                                </div>
+                            </div> --}}
+
+                            <!-- Button -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="singlebutton">Add Banner</label>
+                                <div class="col-md-4">
+                                    <button id="click" name="singlebutton"
+                                        class="btn btn-dark btn-rounded" >Add Banner</button>
+                                </div>
+                            </div>
+
+                        </fieldset>
+                    </form>
+
+                </div>
+
+            </div>
+            <!--end container-->
+
+            <!--footer section start-->
+            <!-- <footer class="footer">
+                    2018 &copy; Syntra.
+                </footer> -->
+            <!--footer section end-->
+
+
+            <!-- Right Slidebar start -->
+            <div class="sb-slidebar sb-right sb-style-overlay">
+                <div class="right-bar slimscroll">
+                    <span class="r-close-btn sb-close"><i class="fa fa-times"></i></span>
+
+                    <ul class="nav nav-tabs nav-justified-">
+                        <li class="">
+                            <a href="#chat" class="active" data-toggle="tab">Chat</a>
+                        </li>
+                        <li class="">
+                            <a href="#activity" data-toggle="tab">Activity</a>
+                        </li>
+                        <li class="">
+                            <a href="#settings" data-toggle="tab">Settings</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="chat">
+                            <div class="online-chat">
+                                <div class="online-chat-container">
+                                    <div class="chat-list">
+                                        <form class="search-content" action="index.html" method="post">
+                                            <input type="text" class="form-control" name="keyword"
+                                                placeholder="Search...">
+                                            <span class="search-button"><i class="ti ti-search"></i></span>
+                                        </form>
+                                    </div>
+                                    <div class="side-title-alt">
+                                        <h2>online</h2>
+                                    </div>
+
+                                    <ul class="team-list chat-list-side">
+                                        <li>
+                                            <a href="#" class="ml-3">
+                                                <span class="thumb-small">
+                                                    <img class="rounded-circle" src="assets/images/users/avatar-1.jpg"
+                                                        alt="">
+                                                    <i class="online dot"></i>
+                                                </span>
+                                                <div class="inline">
+                                                    <span class="name">Alison Jones</span>
+                                                    <small class="text-muted">Start exploring</small>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="ml-3">
+                                                <span class="thumb-small">
+                                                    <img class="rounded-circle" src="assets/images/users/avatar-3.jpg"
+                                                        alt="">
+                                                    <i class="online dot"></i>
+                                                </span>
+                                                <div class="inline">
+                                                    <span class="name">Jonathan Smith</span>
+                                                    <small class="text-muted">Alien Inside</small>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="ml-3">
+                                                <span class="thumb-small">
+                                                    <img class="rounded-circle" src="assets/images/users/avatar-4.jpg"
+                                                        alt="">
+                                                    <i class="away dot"></i>
+                                                </span>
+                                                <div class="inline">
+                                                    <span class="name">Anjelina Doe</span>
+                                                    <small class="text-muted">Screaming...</small>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="ml-3">
+                                                <span class="thumb-small">
+                                                    <img class="rounded-circle" src="assets/images/users/avatar-5.jpg"
+                                                        alt="">
+                                                    <i class="busy dot"></i>
+                                                </span>
+                                                <div class="inline">
+                                                    <span class="name">Franklin Adam</span>
+                                                    <small class="text-muted">Don't lose the hope</small>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="ml-3">
+                                                <span class="thumb-small">
+                                                    <img class="rounded-circle" src="assets/images/users/avatar-6.jpg"
+                                                        alt="">
+                                                    <i class="online dot"></i>
+                                                </span>
+                                                <div class="inline">
+                                                    <span class="name">Jeff Crowford </span>
+                                                    <small class="text-muted">Just flying</small>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                    <div class="side-title-alt mb-3">
+                                        <h2>Friends</h2>
+                                    </div>
+                                    <ul class="list-unstyled friends">
+                                        <li>
+                                            <a href="#">
+                                                <img class="rounded-circle" src="assets/images/users/avatar-7.jpg"
+                                                    alt="">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <img class="rounded-circle" src="assets/images/users/avatar-8.jpg"
+                                                    alt="">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <img class="rounded-circle" src="assets/images/users/avatar-9.jpg"
+                                                    alt="">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <img class="rounded-circle" src="assets/images/users/avatar-10.jpg"
+                                                    alt="">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <img class="rounded-circle" src="assets/images/users/avatar-2.jpg"
+                                                    alt="">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <img class="rounded-circle" src="assets/images/users/avatar-1.jpg"
+                                                    alt="">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <img class="rounded-circle" src="assets/images/users/avatar-3.jpg"
+                                                    alt="">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <img class="rounded-circle" src="assets/images/users/avatar-4.jpg"
+                                                    alt="">
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane " id="activity">
+
+                            <div class="aside-widget">
+                                <div class="side-title-alt">
+                                    <h2>Recent Activity</h2>
+                                </div>
+                                <ul class="team-list chat-list-side info">
+                                    <li>
+                                        <span class="thumb-small">
+                                            <i class="fa fa-pencil"></i>
+                                        </span>
+                                        <div class="inline">
+                                            <span class="name">Mary Brown open a new company</span>
+                                            <span class="time">just now</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <span class="thumb-small">
+                                            <i class="fa fa-user-plus"></i>
+                                        </span>
+                                        <div class="inline">
+                                            <span class="name">Mary Brown send a new message </span>
+                                            <span class="time">50 min ago</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <span class="thumb-small">
+                                            <i class="fa fa-wrench"></i>
+                                        </span>
+                                        <div class="inline">
+                                            <span class="name">Holly Cobb Uploaded 6 new photos.</span>
+                                            <span class="time">3 Week Ago</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <span class="thumb-small">
+                                            <i class="fa fa-users"></i>
+                                        </span>
+                                        <div class="inline">
+                                            <span class="name">Mary Brown open a new company.</span>
+                                            <span class="time">1 Month Ago</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="aside-widget">
+
+                                <div class="side-title-alt">
+                                    <h2>Events</h2>
+                                </div>
+                                <ul class="team-list chat-list-side info statistics border-less-list">
+                                    <li>
+                                        <div class="inline">
+                                            <p class="mb-1">Jamie Miller</p>
+                                            <span class="name">Contrary to popular belief, Lorem Ipsum is not simply
+                                                random text.</span>
+                                            <span class="time text-muted">2 Week Ago</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="inline">
+                                            <p class="mb-1">Robert Jones</p>
+                                            <span class="name">Lorem Ipsum is simply dummy text of the printing and
+                                                typesetting .</span>
+                                            <span class="time text-muted">1 Month Ago</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane " id="settings">
+                            <div class="side-title-alt">
+                                <h6 class="mb-0">Account Setting</h6>
+                            </div>
+                            <ul class="team-list chat-list-side info statistics border-less-list setting-list">
+                                <li>
+                                    <div class="inline">
+                                        <span class="name">Auto updates</span>
+                                    </div>
+                                    <span class="thumb-small">
+                                        <input type="checkbox" checked data-plugin="switchery" data-color="#079c9e"
+                                            data-size="small" />
+                                    </span>
+                                </li>
+                                <li>
+                                    <div class="inline">
+                                        <span class="name">Show offline Contacts</span>
+                                    </div>
+                                    <span class="thumb-small">
+                                        <input type="checkbox" checked data-plugin="switchery" data-color="#079c9e"
+                                            data-size="small" />
+                                    </span>
+                                </li>
+
+                                <li>
+                                    <div class="inline">
+                                        <span class="name">Location Permission</span>
+                                    </div>
+                                    <span class="thumb-small">
+                                        <input type="checkbox" checked data-plugin="switchery" data-color="#079c9e"
+                                            data-size="small" />
+                                    </span>
+                                </li>
+                            </ul>
+
+                            <div class="side-title-alt">
+                                <h6 class="mb-0">General Setting</h6>
+                            </div>
+                            <ul class="team-list chat-list-side info statistics border-less-list setting-list">
+                                <li>
+                                    <div class="inline">
+                                        <span class="name">Show me Online</span>
+                                    </div>
+                                    <span class="thumb-small">
+                                        <input type="checkbox" checked data-plugin="switchery" data-color="#079c9e"
+                                            data-size="small" />
+                                    </span>
+                                </li>
+                                <li>
+                                    <div class="inline">
+                                        <span class="name">Status visible to all</span>
+                                    </div>
+                                    <span class="thumb-small">
+                                        <input type="checkbox" checked data-plugin="switchery" data-color="#079c9e"
+                                            data-size="small" />
+                                    </span>
+                                </li>
+
+                                <li>
+                                    <div class="inline">
+                                        <span class="name">Notifications</span>
+                                    </div>
+                                    <span class="thumb-small">
+                                        <input type="checkbox" checked data-plugin="switchery" data-color="#079c9e"
+                                            data-size="small" />
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end Right Slidebar-->
+        </div>
+        <!--end body content-->
+    </section>
+
+  
+    <!-- jQuery -->
+
+      <script>
+    $('#click').on('click',function(){
+        Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  text: 'Something went wrong!',
+  footer: '<a href="">Why do I have this issue?</a>'
+})
+    })
+</script>
+    
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="/Admin/js/jquery-3.2.1.min.js"></script>
+    <script src="/Admin/js/popper.min.js"></script>
+    <script src="/Admin/js/bootstrap.min.js"></script>
+    <script src="/Admin/js/jquery-migrate.js"></script>
+    <script src="/Admin/js/modernizr.min.js"></script>
+    <script src="/Admin/js/jquery.slimscroll.min.js"></script>
+    <script src="/Admin/js/slidebars.min.js"></script>
+
+    <!--app js-->
+   
+    <script src="/Admin/js/jquery.app.js"></script>
+
+
+</body>
+
+</html>
+

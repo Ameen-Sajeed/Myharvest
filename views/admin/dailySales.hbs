@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Mannat Themes">
+    <meta name="keyword" content="">
+
+    <title>HARVEST | SALES REPORT</title>
+
+    <!-- Theme icon -->
+    <link rel="shortcut icon" href="/Admin/images/favicon.ico">
+
+    <!-- Theme Css -->
+    <link href="/Admin/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/Admin/css/slidebars.min.css" rel="stylesheet">
+    <link href="/Admin/css/icons.css" rel="stylesheet">
+    <link href="/Admin/css/menu.css" rel="stylesheet" type="text/css">
+    <link href="/Admin/css/style.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
+
+</head>
+
+{{!-- <style>
+    body {
+        color: #333539;
+        background: #6e4ef0;
+        font-family: 'Varela Round', sans-serif;
+        font-size: 13px;
+    }
+</style> --}}
+
+<body class="sticky-header">
+    <section>
+        <!-- sidebar left start-->
+         <div class="sidebar-left  md-6">
+            <div class="sidebar-left-info">
+
+                <div class="user-box">
+                    <div class="d-flex justify-content-center">
+                        <img src="/Admin/images/users/WhatsApp Image 2022-07-30 at 10.23.13 AM.jpeg" alt=""
+                            class="img-fluid rounded-circle">
+                    </div>
+                    <div class="text-center text-white mt-2">
+                        <h6>Amien Sajeed</h6>
+                        <p class="text-muted m-0">Admin</p>
+                    </div>
+                </div>
+
+                <!--sidebar nav start-->
+                <ul class="side-navigation">
+                    <li>
+                    </li>
+                    <li class="active">
+                        <a href="/admindashboard"><i class="mdi mdi-gauge"></i> <span>Dashboard</span></a>
+                    </li>
+                    <li>
+                    </li>
+                    <li class="menu-lists"><a href="/admin-users"><i class="fa fa-user-circle"></i> <span>Users <span
+                                    class="badge badge-primary noti-arrow pull-right"></span> </span></a>
+              
+                    </li>
+                    <li class="menu-list"><a href="/admin/admin-products"><i class="mdi mdi-diamond"></i>
+                            <span>Products</span></a>
+                        <ul class="child-list">
+                            <li><a href="/admin-addproducts"> Add a Product </a></li>
+                            <li><a href="/admin-products"> View Products</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-list"><a href="javascript:;"><i class="mdi mdi-table"></i> <span>Banner</span></a>
+                        <ul class="child-list">
+                            <li><a href="/admin-addbanner"> Add a Banner</a></li>
+                            <li><a href="/admin-banner"> View Banners</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="menu-lists"><a href="/admin-orders"><i class="mdi mdi-table"></i> <span>Order Management </span></a>
+                    </li>
+                    <li class="menu-list"><a href=""><i class="mdi mdi-google-earth"></i> <span> Offers & Coupons
+                            </span></a>
+                         <ul class="child-list">
+                                <li><a href="/admin-addcoupen">Add Coupons</a></li>
+                                <li><a href="/admin-viewcoupen">View Coupons</a></li> 
+                                <li><a href="/admin-addCatOffer">Add Category Offer</a></li>
+                                <li><a href="/admin-ViewCatoffer">View Category Offers</a></li>
+                                 <li><a href="form-advanced.html">Add Product Offer</a></li>
+                                <li><a href="form-wizard.html">View Product Offers</a></li>
+                              
+                            </ul> 
+                    </li>
+                    <li class="menu-lists"><a href="/admin-category"><i class="mdi mdi-chart-arc"></i> <span> Category Management</span></a>
+                    </li>
+                    <li class="menu-lists"><a href="/admin-login"><i class="mdi mdi-email"
+                                aria-hidden="true"></i><span>Log Out </span></a>
+                    </li>
+                </ul>
+                <!--sidebar nav end-->
+            </div>
+        </div><!-- sidebar left end-->
+
+        <!-- body content start-->
+        <div class="body-content  bg-light">
+            <!-- header section start-->
+        <div class="header-section">
+                <!--logo and logo icon start-->
+                
+                <div class="logo bg-light">
+                    <a href="index.html">
+                        <span class="logo-img" style="padding-bottom: 50px;">
+                            <img src="/User/images/logo/looo-removebg-preview.png" style="padding-bottom: 14px";
+                                alt="" height="100px">
+                        </span>
+                      
+                        <!--<i class="fa fa-maxcdn"></i>-->
+                     {{!-- <h3> <span class="brand-name" style="font-family: cursive;">Harvest </span>  </h1>    --}}
+                    </a>
+                </div>
+
+                <!--toggle button start-->
+                {{!-- <a class="toggle-btn"><i class="ti ti-menu"></i></a> --}}
+                <!--toggle button end-->
+
+                {{!-- <!--mega menu start-->
+                <div id="navbar-collapse-1" class="navbar-collapse collapse mega-menu">
+                    <ul class="nav navbar-nav">
+                        <!-- Classic dropdown -->
+                    
+                        <!-- Classic list -->
+                        <li>
+                            <form class="search-content" action="index.html" method="post">
+                                <input type="text" class="form-control mt-3" name="keyword" placeholder="Search...">
+                                <span class="search-button"><i class="ti ti-search"></i></span>
+                            </form>
+                        </li>
+                    </ul>
+                </div> --}}
+                <!--mega menu end-->
+
+              
+            </div>
+            <!-- header section end-->
+
+            <div class="container-fluid">
+                <div class="page-head d-flex justify-content-between">
+                    <h4 class="mt-2 mb-2 text-white"> Sales Report </h4>
+
+
+                </div>
+                <div class="edit-table">
+                    <div class="row">
+
+                        <div class="col-lg-12 col-sm-12">
+                            <div class="card m-b-30">
+                                <div class="card-body">
+                                    {{!-- <p class="text-muted">Add toolbar column with edit and delete buttons.</p>
+                                    --}}
+                                    <div class="">
+
+                                        {{!-- daily Sales --}}
+                                        {{#if dailysale}}
+                                        <table id="example" class="display" id="day" style="width:100%">
+                                            <h3 style="text-align:center">Daily Sales Report</h3>
+                                            <thead>
+                                                <tr>
+
+                                                    <th style="text-align:center">S-No:</th>
+                                                    <th style="text-align:center">Date</th>
+                                                    <th style="text-align:center">Name of Product</th>
+                                                    <th style="text-align:center">Price Of Product</th>
+                                                    <th style="text-align:center">Quantity</th>
+                                                    <th style="text-align:center">Daily Sales</th>
+
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                {{#each dailysalePro}}
+
+                                                <tr>
+
+                                                    <td style="text-align:center ;">{{inc @index}}</td>
+                                                    <td style="text-align:center ;">{{this.date}}</td>
+                                                    <td style="text-align:center ;"> {{this.name}}</td>
+                                                    <td style="text-align:center ;">{{this.price}}</td>
+                                                    <td style="text-align:center ;">{{this.quantity}}</td>
+                                                    <td style="text-align:center ;">{{this.totalAmount}}</td>
+                                                    {{/each}}
+
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                    
+                                                        <p style="color:#00ff73"><i>Total Orders:</i>
+                                                               {{!-- {{#each dailysale}} <strong>{{this.torders}}</strong></p> --}}
+                                                        {{!-- {{/each}} --}}
+                                                    </td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td style="text-align:center ; color: rgb(234, 0, 0);">
+                                                        <i>Total-Quantity:</i><strong>{{sum}}</td>
+                                                    <td style="text-align:center ; color: rgb(234, 0, 0);"><i>Total
+                                                            Sales:</i><strong>{{sum2}}</strong> </td>
+
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+
+
+                                        {{!-- Monthly --}}
+
+                                        {{else if monthly}}
+
+                                        <table id="example" class="display" id="month" style="width:100%">
+                                            <h3 style="text-align:center">Monthly Sales Report</h3>
+                                            <thead>
+                                                <tr>
+
+                                                    <th style="text-align:center">S-No:</th>
+                                                    <th style="text-align:center">Date</th>
+                                                    <th style="text-align:center">No: of Orders</th>
+                                                    <th style="text-align:center">Monthly Sales</th>
+
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {{#each monthly}}
+
+                                                <tr>
+                                                    <td style="text-align:center ;">{{inc @index}}</td>
+                                                    <td style="text-align:center ;">{{this._id}}</td>
+                                                    <td style="text-align:center ;">{{this.count}}</td>
+                                                    <td style="text-align:center ;">{{this.totalAmount}}</td>
+
+                                                </tr>
+                                                {{/each}}
+
+                                                <tr>
+
+                                                    <td>Total</td>
+                                                    <td></td>
+                                                    <td style="text-align:center ; color: rgb(234, 0, 0);">
+                                                        <i>Total-Orders:</i><strong>{{sum}}</td>
+                                                    <td style="text-align:center ; color: rgb(234, 0, 0);"><i>Total
+                                                            Sales:</i><strong>{{sum2}}</strong> </td>
+                                                </tr>
+
+                                        </table>
+
+
+                                        {{!-- yearly --}}
+
+                                        {{else if yearly}}
+
+                                        <table id="example" class="display" id="year" style="width:100%">
+                                            <h3 style="text-align:center">Yearly Sales Report</h3>
+                                            <thead>
+                                                <tr>
+
+                                                    <th style="text-align:center">S-No:</th>
+                                                    <th style="text-align:center">Year</th>
+                                                    <th style="text-align:center">No: of Orders</th>
+                                                    <th style="text-align:center">Yearly Sales</th>
+
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {{#each yearly}}
+
+                                                <tr>
+                                                    <td style="text-align:center ;">{{inc @index}}</td>
+                                                    <td style="text-align:center ;">{{this._id}}</td>
+                                                    <td style="text-align:center ;">{{this.count}}</td>
+                                                    <td style="text-align:center ;">{{this.totalAmount}}</td>
+
+                                                </tr>
+                                                {{/each}}
+                                                <tr>
+
+                                                    <td>Total</td>
+                                                    <td></td>
+                                                    <td style="text-align:center ; color: rgb(234, 0, 0);">
+                                                        <i>Total-Orders:</i><strong>{{sum}}</td>
+                                                    <td style="text-align:center ; color: rgb(234, 0, 0);"><i>Total
+                                                            Sales:</i><strong>{{sum2}}</strong> </td>
+                                                </tr>
+
+
+                                        </table>
+                                        {{/if}}
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end row-->
+                </div>
+                <!--end body content-->
+    </section>
+
+    <!-- jQuery -->
+    <script src="https://kit.fontawesome.com/dd7cba467d.js" crossorigin="anonymous"></script>
+    <script src="/Admin/js/jquery-3.2.1.min.js"></script>
+    <script src="/Admin/js/popper.min.js"></script>
+    <script src="/Admin/js/bootstrap.min.js"></script>
+    <script src="/Admin/js/jquery-migrate.js"></script>
+    <script src="/Admin/js/modernizr.min.js"></script>
+    <script src="/Admin/js/jquery.slimscroll.min.js"></script>
+    <script src="/Admin/js/slidebars.min.js"></script>
+
+    <script src="/Admin/plugins/tiny-editable/mindmup-editabletable.js"></script>
+    <script src="/Admin/plugins/tiny-editable/numeric-input-example.js"></script>
+    <script src="/Admin/plugins/tabledit/jquery.tabledit.js"></script>
+
+    <!--app js-->
+    <script src="/Admin/js/jquery.app.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+
+
+</body>
+
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+
+
+        });
+
+
+
+    });
+</script>
+
+
+</html>

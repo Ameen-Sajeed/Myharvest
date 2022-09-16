@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Urdan - Minimal eCommerce HTML Template</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description"
+        content="Urdan Minimal eCommerce Bootstrap 5 Template is a stunning eCommerce website template that is the best choice for any online store.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="profile" href="https://gmpg.org/xfn/11">
+    <link rel="canonical" href="https://htmldemo.hasthemes.com/urdan/index.html" />
+
+    <!-- Open Graph (OG) meta tags are snippets of code that control how URLs are displayed when shared on social media  -->
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Urdan - Minimal eCommerce HTML Template" />
+    <meta property="og:url" content="https://htmldemo.hasthemes.com/urdan/index.html" />
+    <meta property="og:site_name" content="Urdan - Minimal eCommerce HTML Template" />
+    <!-- For the og:image content, replace the # with a link of an image -->
+    <meta property="og:image" content="#" />
+    <meta property="og:description"
+        content="Urdan Minimal eCommerce Bootstrap 5 Template is a stunning eCommerce website template that is the best choice for any online store." />
+    <!-- Add site Favicon -->
+    <link rel="icon" href="assets/images/favicon/cropped-favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" href="assets/images/favicon/cropped-favicon-192x192.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="assets/images/favicon/cropped-favicon-180x180.png" />
+    <meta name="msapplication-TileImage" content="assets/images/favicon/cropped-favicon-270x270.png" />
+
+    <!-- All CSS is here
+	============================================ -->
+    <link rel="stylesheet" href="/User/css/vendor/bootstrap.min.css" />
+    <link rel="stylesheet" href="/User/css/vendor/pe-icon-7-stroke.css" />
+    <link rel="stylesheet" href="/User/css/vendor/themify-icons.css" />
+    <link rel="stylesheet" href="/User/css/vendor/font-awesome.min.css" />
+    <link rel="stylesheet" href="/User/css/plugins/animate.css" />
+    <link rel="stylesheet" href="/User/css/plugins/aos.css" />
+    <link rel="stylesheet" href="/User/css/plugins/magnific-popup.css" />
+    <link rel="stylesheet" href="/User/css/plugins/swiper.min.css" />
+    <link rel="stylesheet" href="/User/css/plugins/jquery-ui.css" />
+    <link rel="stylesheet" href="/User/css/plugins/nice-select.css" />
+    <link rel="stylesheet" href="/User/css/plugins/select2.min.css" />
+    <link rel="stylesheet" href="/User/css/plugins/easyzoom.css" />
+    <link rel="stylesheet" href="/User/css/plugins/slinky.css" />
+    <link rel="stylesheet" href="/User/css/style.css" />
+     <link rel="stylesheet" href="/stylesheets/style5.css" />
+
+
+<style>
+    .breadcrumb-area:before {
+    position: absolute;
+    content: "";
+    left: 0;
+    right: 0;
+    bottom: -25px;
+    margin: 0 auto;
+    width: 342px;
+    height: 342px;
+    border-radius: 0%;
+    background-color: #dd000000;
+}
+</style>
+</head>
+
+
+
+
+<body>
+    <div class="main-wrapper main-wrapper-2">
+        <div class="header-top d-none d-lg-block bg-gray">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-6">
+                        <div class="welcome-text">
+                            {{#if user}}
+                            <p>Welcome {{user.name}}</p>
+                            {{else}}
+                            <p> Welcome Please Login! </p>
+                            {{/if}}
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-6">
+                        <div class="language-currency-wrap">
+                            <div class="currency-wrap border-style">
+                                <a class="currency-active" href="#">Account<i class=" ti-angle-down "></i></a>
+                                <div class="currency-dropdown">
+                                    <ul>
+                                        <li><a href="#"> Profile</a></li>
+                                        <li><a href="#">Settings</a></li>
+                                        <li><a href="/user-logout">Log Out </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="language-wrap">
+                                <a class="language-active" href="#"><img src="assets/images/icon-img/flag.png" alt="">
+                                    English <i class=" ti-angle-down "></i></a>
+                                <div class="language-dropdown">
+                                    <ul>
+                                        <li><a href="#"><img src="assets/images/icon-img/flag.png" alt="">English </a>
+                                        </li>
+                                        <li><a href="#"><img src="assets/images/icon-img/spanish.png" alt="">Spanish</a>
+                                        </li>
+                                        <li><a href="#"><img src="assets/images/icon-img/arabic.png" alt="">Arabic </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <header class="header-area header-responsive-padding header-height-1" style="min-height: 110px; margin-top: 20px;">
+            <div class="header-top d-none d-lg-block bg-gray-5">
+                <div class="container">
+                    <div class="row align-items-center">
+
+                    </div>
+                </div>
+            </div>
+            <div class="header-bottom sticky-bar bg-light text-white " style="min-height: 130px;">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-3 col-md-6 col-6">
+                            <div class="logo">
+                                <a href="/login-register"><img src="/User/images/logo/looo-removebg-preview.png"
+                                        alt="logo" style="margin-top: 15px;" ></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 d-none d-lg-block">
+                            <div class="main-menu text-center ">
+                                <nav>
+                                    <ul>
+                                        <li><a href="/">HOME</a>
+
+                                        </li>
+
+
+
+                                        <li><a href=""> SHOP BY &nbsp; CATEGORY</a>
+
+                                            <ul class="sub-menu-style">
+                                                {{#each category}}
+                                                <li><a href="/veg/{{this._id}}"> {{this.category}}</a></li>
+                                                {{/each}}
+                                            </ul>
+
+                                        </li>
+
+
+                                        <li class="" style="font-size: 15px;"><a href="/allproducts">ALL PRODUCTS</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-6 ">
+                            <div class="header-action-wrap">
+                                <div class="header-action-style header-search-1">
+                                    <a class="search-toggle" href="#">
+                                        <i class="pe-7s-search s-open"></i>
+                                        <i class="pe-7s-close s-close"></i>
+                                    </a>
+                                    <div class="search-wrap-1">
+                                        <form action="#">
+                                            <input placeholder="Search products…" type="text">
+                                            <button class="button-search"> <i class="pe-7s-search"></i></button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="header-action-style d-flex gap-3 dropdown">
+
+                                    {{#if user}}
+
+
+
+                                    <a title="Login Register" href="/profile"><i class="pe-7s-user"></i></a>
+                                    {{else}}
+                                    <a title="Login Register" href="/login"><i class="pe-7s-user"></i></a>
+
+                                </div>
+
+                                {{/if}}
+
+
+
+
+                                <div class="header-action-style">
+                                    <a title="Wishlist" href="/wishlist"><i class="pe-7s-like"></i></a>
+                                </div>
+                                <div class="header-action-style header-action-cart">
+                                    <a class="cart-active" href="#"><i class="pe-7s-shopbag"></i>
+                                    {{#if user}}
+                                        <span class="product-count bg-black" id="cart-count">{{cartcount}}</span>
+                                    </a>
+                                    {{else}}
+                                <span class="product-count " id="cart-count"></span>
+                         {{/if}}
+                                </div>
+                                <div class="header-action-style d-block d-lg-none">
+                                    <a class="mobile-menu-active-button" href="#"><i class="pe-7s-menu"></i></a>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- mini cart start -->
+        <div class="sidebar-cart-active">
+            <div class="sidebar-cart-all">
+                <a class="cart-close" href="#"><i class="pe-7s-close"></i></a>
+                <div class="cart-content">
+                    <h3>Shopping Cart</h3>
+                    <ul>
+                        <li>
+                            <div class="cart-img">
+                                <a href="#"><img src="assets/images/cart/cart-1.jpg" alt=""></a>
+                            </div>
+                            <div class="cart-title">
+                                <h4><a href="#">Stylish Swing Chair</a></h4>
+                                <span> 1 × $49.00 </span>
+                            </div>
+                            <div class="cart-delete">
+                                <a href="#">×</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="cart-img">
+                                <a href="#"><img src="assets/images/cart/cart-2.jpg" alt=""></a>
+                            </div>
+                            <div class="cart-title">
+                                <h4><a href="#">Modern Chairs</a></h4>
+                                <span> 1 × $49.00 </span>
+                            </div>
+                            <div class="cart-delete">
+                                <a href="#">×</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="cart-total">
+                        <h4>Subtotal: <span>$170.00</span></h4>
+                    </div>
+                    <div class="cart-btn btn-hover">
+                        <a class="theme-color" href="cart.html">view cart</a>
+                    </div>
+                    <div class="checkout-btn btn-hover">
+                        <a class="theme-color" href="checkout.html">checkout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumb-area bg-gray-4 breadcrumb-padding-1 " style="background-image: url(/User/images/banner/colorful-veggies-frame-with-copy-space\ \(1\).jpg);background-size: cover;">
+            <div class="container">
+                <div class="breadcrumb-content text-center">
+                    <h2 class="mt-4 text-success" style="font-size: 50px;font-weight: 600;">Cart</h2>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><i class="ti-angle-right"></i></li>
+                        <li>Cart</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="breadcrumb-img-1">
+                <img src="assets/images/banner/breadcrumb-1.png" alt="">
+            </div>
+            <div class="breadcrumb-img-2">
+                <img src="assets/images/banner/breadcrumb-2.png" alt="">
+            </div>
+        </div>
+        <div class="cart-area pt-100 pb-100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <form>
+                            <div class="cart-table-content">
+                                <div class="table-content table-responsive">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th class="width-thumbnail">Product</th>
+                                                <th class="width-name">Product Name</th>
+                                                <th class="width-price"> Price</th>
+                                                <th class="width-quantity">Quantity</th>
+                                                <th class="width-subtotal">Subtotal</th>
+                                                <th class="width-remove">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {{#each products}}
+                                            <tr>
+                                                {{!-- {{#each product}} --}}
+                                                <td class="product-thumbnail">
+                                                    <a href="product-details.html"><img
+                                                            src="/Admin/images/{{this.product.image.[0]}}" alt=""></a>
+                                                </td>
+                                                <td class="product-name">
+                                                    <h5><a href="product-details.html">{{this.product.name}}</a></h5>
+                                                </td>
+                                                <td class="product-cart-price"><span
+                                                        class="amount">₹{{this.product.price}}</span>
+                                                    {{!-- {{/each}} --}}
+
+                                                </td>
+                                                <td class="cart-quality">
+                                                    {{!-- <div class="product-quality"> --}}
+
+                                                        {{!-- <input class="cart-plus-minus-box input-text qty text"
+                                                            onclick="changeQuantity('{{this._id}}','{{this.product._id}},-1);
+                                                            changeQuantity('{{this._id}}','{{this.product._id}}',1)"
+                                                            name="qtybutton" value=" {{this.quantity}}"> --}}
+
+                                                        <button class="cart-item-count mr-3 "
+                                                            onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user._id}}',-1)">-</button>
+                                                        {{!-- <p>{{../user._id}}</p> --}}
+
+                                                        <span id="{{this.product._id}}">{{this.quantity}}</span>
+
+
+                                                        <button class="cart-item-count ml-3"
+                                                            onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user._id}}',1)">+</button>
+
+
+                                                </td>
+                                                <td class="product-total"><span
+                                                        id="a{{this.product._id}}">{{this.subTotal}}</span></td>
+
+                                                <td class="product-remove"><a class="btn"
+                                                        onclick="deleteItem('{{this._id}}','{{this.product._id}}')"><i
+                                                            class=" ti-trash "></i></a>
+                                                </td>
+
+                                            </tr>
+                                            {{/each}}
+                                            {{!-- {{#for 0 10 2}} --}}
+                                            {{!-- {{/for}} --}}
+
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="cart-shiping-update-wrapper">
+                                        <div class="cart-shiping-update btn-hover">
+                                            <a href="/">Continue Shopping</a>
+                                        </div>
+                                        <div class="cart-clear-wrap">
+                                           
+                                            <div class="cart-clear btn-hover">
+                                                <a href="#" onclick="clearCart('{{this._id}}')">Clear Cart</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row">
+                    {{!-- <div class="col-lg-4 col-md-6 col-12">
+                        <div class="cart-calculate-discount-wrap mb-40">
+                            <h4>Calculate shipping </h4>
+                            <div class="calculate-discount-content">
+                                <div class="select-style mb-15">
+                                    <select class="select-two-active">
+                                        <option>Bangladesh</option>
+                                        <option>Bahrain</option>
+                                        <option>Azerbaijan</option>
+                                        <option>Barbados</option>
+                                        <option>Barbados</option>
+                                    </select>
+                                </div>
+                                <div class="select-style mb-15">
+                                    <select class="select-two-active">
+                                        <option>State / County</option>
+                                        <option>Bahrain</option>
+                                        <option>Azerbaijan</option>
+                                        <option>Barbados</option>
+                                        <option>Barbados</option>
+                                    </select>
+                                </div>
+                                <div class="input-style">
+                                    <input type="text" placeholder="Town / City">
+                                </div>
+                                <div class="input-style">
+                                    <input type="text" placeholder="Postcode / ZIP">
+                                </div>
+                                <div class="calculate-discount-btn btn-hover">
+                                    <a class="btn theme-color" href="#">Update</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div> --}}
+                    {{!-- <div class="col-lg-4 col-md-6 col-12">
+                        <div class="cart-calculate-discount-wrap mb-40">
+                            <h4>Coupon Discount </h4>
+                            <div class="calculate-discount-content">
+                                <p>Enter your coupon code if you have one.</p>
+                                <div class="input-style">
+                                    <input type="text" placeholder="Coupon code">
+                                </div>
+                                <div class="calculate-discount-btn btn-hover">
+                                    <a class="btn theme-color" href="#">Apply Coupon</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div> --}}
+                    <center>
+                    <div class="col-lg-4 col-md-12 col-12">
+                        <div class="grand-total-wrap">
+                            <div class="grand-total-content">
+                                {{!-- <h3>Subtotal <span>{{subtotal}}</span></h3> --}}
+                                {{!-- <div class="grand-shipping">
+                                    <span>Shipping</span>
+                                    <ul>
+                                        <li><input type="radio" name="shipping" value="info"
+                                                checked="checked"><label>Free shipping</label></li>
+                                        <li><input type="radio" name="shipping" value="info"
+                                                checked="checked"><label>Flat rate: <span>$100.00</span></label></li>
+                                        <li><input type="radio" name="shipping" value="info"
+                                                checked="checked"><label>Local pickup: <span>$120.00</span></label></li>
+                                    </ul>
+                                </div> --}}
+                                {{!-- <div class="shipping-country">
+                                    <p>Shipping to Bangladesh</p>
+                                </div> --}}
+                                
+                                <div class="grand-total">
+                                    <h4>Total <span id="total">₹{{totalValue}}</span></h4>
+                                </div>
+                            </div>
+                            <div class="grand-total-btn btn-hover">
+                                <a class="btn theme-color" href="/checkout">Proceed to checkout</a>
+                            </div>
+                        </div>
+                    </div>
+                    </center>
+                </div>
+            </div>
+        </div>
+        <footer class="footer-area">
+            <div class="bg-gray-2">
+                <div class="container">
+                    <div class="footer-top pt-80 pb-35">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                <div class="footer-widget footer-about mb-40">
+                                    <div class="footer-logo">
+                                        <a href="index.html"><img src="/User/images/logo/looo.jpeg" alt="logo"></a>
+                                    </div>
+                                    <p>Lorem ipsum dolor sit amet, cons adipi elit, sed do eiusmod tempor incididunt ut
+                                        aliqua.</p>
+                                    <div class="payment-img">
+                                        <a href="#"><img src="/user/images/icon-img/payment.png" alt="logo"></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                <div class="footer-widget footer-widget-margin-1 footer-list mb-40">
+                                    <h3 class="footer-title">Information</h3>
+                                    <ul>
+                                        <li><a href="about-us.html">About Us</a></li>
+                                        <li><a href="#">Delivery Information</a></li>
+                                        <li><a href="#">Privacy Policy</a></li>
+                                        <li><a href="#">Terms & Conditions</a></li>
+                                        <li><a href="#">Customer Service</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-6 col-sm-6 col-12">
+                                <div class="footer-widget footer-list mb-40">
+                                    <h3 class="footer-title">My Accound</h3>
+                                    <ul>
+                                        <li><a href="my-account.html">My Account</a></li>
+                                        <li><a href="#">Order History</a></li>
+                                        <li><a href="wishlist.html">Wish List</a></li>
+                                        <li><a href="#">Newsletter</a></li>
+                                        <li><a href="#">Order History</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                <div class="footer-widget footer-widget-margin-2 footer-address mb-40">
+                                    <h3 class="footer-title">Get in touch</h3>
+                                    <ul>
+                                        <li><span>Address: </span>Your address goes here </li>
+                                        <li><span>Telephone Enquiry:</span> (012) 345 6789</li>
+                                        <li><span>Email: </span>demo@example.com</li>
+                                    </ul>
+                                    <div class="open-time">
+                                        <p>Open : <span>8:00 AM</span> - Close : <span>18:00 PM</span></p>
+                                        <p>Saturday - Sunday : Close</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-gray-3">
+                <div class="container">
+                    <div class="footer-bottom copyright text-center bg-gray-3">
+                        <p>Copyright ©2021 All rights reserved | Made with <i class="fa fa-heart"></i> by <a
+                                href="https://hasthemes.com/"> HasThemes</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Mobile Menu start -->
+        <div class="off-canvas-active">
+            <a class="off-canvas-close"><i class=" ti-close "></i></a>
+            <div class="off-canvas-wrap">
+                <div class="welcome-text off-canvas-margin-padding">
+                    <p>Default Welcome Msg! </p>
+                </div>
+                <div class="mobile-menu-wrap off-canvas-margin-padding-2">
+                    <div id="mobile-menu" class="slinky-mobile-menu text-left">
+                        <ul>
+                            <li>
+                                <a href="#">HOME</a>
+                                <ul>
+                                    <li><a href="index.html">Home version 1 </a></li>
+                                    <li><a href="index-2.html">Home version 2</a></li>
+                                    <li><a href="index-3.html">Home version 3</a></li>
+                                    <li><a href="index-4.html">Home version 4</a></li>
+                                    <li><a href="index-5.html">Home version 5</a></li>
+                                    <li><a href="index-6.html">Home version 6</a></li>
+                                    <li><a href="index-7.html">Home version 7</a></li>
+                                    <li><a href="index-8.html">Home version 8</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">SHOP</a>
+                                <ul>
+                                    <li>
+                                        <a href="#">Shop Layout</a>
+                                        <ul>
+                                            <li><a href="shop.html">Standard Style</a></li>
+                                            <li><a href="shop-sidebar.html">Shop Grid Sidebar</a></li>
+                                            <li><a href="shop-list.html">Shop List Style</a></li>
+                                            <li><a href="shop-list-sidebar.html">Shop List Sidebar</a></li>
+                                            <li><a href="shop-right-sidebar.html">Shop Right Sidebar</a></li>
+                                            <li><a href="shop-location.html">Store Location</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#">Product Layout</a>
+                                        <ul>
+                                            <li><a href="product-details.html">Tab Style 1</a></li>
+                                            <li><a href="product-details-2.html">Tab Style 2</a></li>
+                                            <li><a href="product-details-gallery.html">Gallery style </a></li>
+                                            <li><a href="product-details-affiliate.html">Affiliate style</a></li>
+                                            <li><a href="product-details-group.html">Group Style</a></li>
+                                            <li><a href="product-details-fixed-img.html">Fixed Image Style </a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">PAGES </a>
+                                <ul>
+                                    <li><a href="about-us.html">About Us </a></li>
+                                    <li><a href="cart.html">Cart Page</a></li>
+                                    <li><a href="checkout.html">Checkout </a></li>
+                                    <li><a href="my-account.html">My Account</a></li>
+                                    <li><a href="wishlist.html">Wishlist </a></li>
+                                    <li><a href="compare.html">Compare </a></li>
+                                    <li><a href="contact-us.html">Contact us </a></li>
+                                    <li><a href="login-register.html">Login / Register </a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">BLOG </a>
+                                <ul>
+                                    <li><a href="blog.html">Blog Standard </a></li>
+                                    <li><a href="blog-sidebar.html">Blog Sidebar</a></li>
+                                    <li><a href="blog-details.html">Blog Details</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="about-us.html">ABOUT US</a>
+                            </li>
+                            <li>
+                                <a href="contact-us.html">CONTACT US</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="language-currency-wrap language-currency-wrap-modify">
+                    <div class="currency-wrap border-style">
+                        <a class="currency-active" href="#">$ Dollar (US) <i class=" ti-angle-down "></i></a>
+                        <div class="currency-dropdown">
+                            <ul>
+                                <li><a href="#">Taka (BDT) </a></li>
+                                <li><a href="#">Riyal (SAR) </a></li>
+                                <li><a href="#">Rupee (INR) </a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="language-wrap">
+                        <a class="language-active" href="#"><img src="assets/images/icon-img/flag.png" alt=""> English
+                            <i class=" ti-angle-down "></i></a>
+                        <div class="language-dropdown">
+                            <ul>
+                                <li><a href="#"><img src="assets/images/icon-img/flag.png" alt="">English </a></li>
+                                <li><a href="#"><img src="assets/images/icon-img/spanish.png" alt="">Spanish</a></li>
+                                <li><a href="#"><img src="assets/images/icon-img/arabic.png" alt="">Arabic </a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- All JS is here -->
+
+
+    <script src="/javascripts/ajax.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/User/js/vendor/modernizr-3.11.7.min.js"></script>
+    <script src="/User/js/vendor/jquery-3.6.0.min.js"></script>
+    <script src="/User/js/vendor/jquery-migrate-3.3.2.min.js"></script>
+    <script src="/User/js/vendor/popper.min.js"></script>
+    <script src="/User/js/vendor/bootstrap.min.js"></script>
+    <script src="/User/js/plugins/wow.js"></script>
+    <script src="/User/js/plugins/scrollup.js"></script>
+    <script src="/User/js/plugins/aos.js"></script>
+    <script src="/User/js/plugins/magnific-popup.js"></script>
+    <script src="/User/js/plugins/jquery.syotimer.min.js"></script>
+    <script src="/User/js/plugins/swiper.min.js"></script>
+    <script src="/User/js/plugins/imagesloaded.pkgd.min.js"></script>
+    <script src="/User/js/plugins/isotope.pkgd.min.js"></script>
+    <script src="/User/js/plugins/jquery-ui.js"></script>
+    <script src="/User/js/plugins/jquery-ui-touch-punch.js"></script>
+    <script src="/User/js/plugins/jquery.nice-select.min.js"></script>
+    <script src="/User/js/plugins/waypoints.min.js"></script>
+    <script src="/User/js/plugins/counterup.min.js"></script>
+    <script src="/User/js/plugins/select2.min.js"></script>
+    <script src="/User/js/plugins/easyzoom.js"></script>
+    <script src="/User/js/plugins/slinky.min.js"></script>
+    <script src="/User/js/plugins/ajax-mail.js"></script>
+    <!-- Main JS -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="/User/js/main.js"></script>
+
+
+</body>
+
+</html>
