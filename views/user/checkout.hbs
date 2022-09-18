@@ -254,7 +254,7 @@
             </div>
         </div>
 
-        <div class="checkout-main-area pb-100 pt-100 " style="background-image: url(/User/images/banner/vegetables-fruits-with-copy-space\ \(1\).jpg);background-size: cover;">
+        <div class="checkout-main-area pb-100 pt-100 " >
             <div class="container ">
                 <form method="" id="checkout-form">
 
@@ -352,14 +352,18 @@
 
 <div>
                   <h3 class="text-dark"style="font-weight: 600; font-size: 30px; ">Select Your Payment Method</h3> <br>
+                  <div class="" id ="cod">
+
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="payment-method" id="COD" value="COD" checked/>
                 <label class="form-check-label" for="flexRadioDefault1" style="font-size: 15px;"> Cash on Delivery </label>
             </div>
 
             <!-- Default checked radio -->
+            <div class="" id="online">
+
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="payment-method" id="RAZORPAY" value="RAZORPAY"
+                <input class="form-check-input" type="radio" name="payment-method" id="RAZORPAY" value="RAZORPAY" 
                      />
                 <label class="form-check-label" for="flexRadioDefault2" style="font-size: 15px;"> RazorPay </label>
             </div>
@@ -369,19 +373,17 @@
                 <label class="form-check-label" for="flexRadioDefault2" style="font-size: 15px;"> PayPal </label>
             </div>
 
-
-               <div class="form-check">
-                <input class="form-check-input" type="radio" name="payment-method" id="PAYPAL" value="PAYPAL"  />
+</div>
+               <div class="form-check" id="wallet-div" hidden>
+                <input class="form-check-input" type="radio" name="payment-method" id="customCheck50" value="walletPay"  />
                 <label class="form-check-label" for="flexRadioDefault2" style="font-size: 15px;"> Use Wallet Balance </label>
             </div><br>
-
+</div>
 </div>
                               
 
 
-   <div class="Place-order btn-hover text-center">
-                                            <button type="submit " class="btn  border border-success bg-success " style="font-size: 20px; "> <strong> Place Order</strong>  </button>
-                                        </div>
+  
             </div>
 
         </div>
@@ -438,8 +440,33 @@
                             </div>
 
                         </div>
+
+                        
                 </div>
             </div>
+            {{#if user.wallet}}
+            <div class="col-lg-12 col-md-12 col-12 ">
+                <div class="cart-calculate-discount-wrap ">
+                    <h4 class="" style="font-size: 25px;">Wallet</h6>
+
+                <div class="form-check mt-3">
+                <input class="form-check-input" id="wallet1" type="radio" name="useWallet" id="" value="1" onclick="usewallet()"  />
+                <label class="form-check-label" for="flexRadioDefault2" style="font-size: 12px;"> Use now </label>
+            </div>
+
+             <div class="form-check">
+                <input class="form-check-input" id="wallet0" type="radio" name="useWallet" id="" onclick=" removeWallet()"  value="0"/>
+                <label class="form-check-label" for="flexRadioDefault2" style="font-size: 12px;">Use later </label>
+            </div><br>
+
+            <p class="text-success" style="font-size: medium;">Wallet Balance :₹<span id ="walletBalance">{{user.wallet}}</span></p>
+
+                       
+
+                        
+                </div>
+            </div>
+            {{/if}}
             <h3 class="" style="font-size: 30px; font-weight: 600;">Your order</h3>
             <div class="your-order-wrap gray-bg-4 ">
                 <div class="your-order-info-wrap">
@@ -489,8 +516,10 @@
                                 </li>
                                 <br>
                                 <br>
+                                                                             <input type="number"  name="payable" class="amount" id="payable"  value="" hidden>
+                                {{!-- <li class="text-danger" style="font-size: 30px;"> <strong>Total</strong> <span class="amount" id="payableAmount" style="font-size: 30px ; font-weight: 600;">₹{{total}}</span></li> --}}
 
-                                <li class="text-danger" style="font-size: 30px;"> <strong>Total</strong> <span class="text-success" id="totall" style="font-size: 30px ; font-weight: 600;">₹{{total}}</span></li>
+                                <li class="text-danger" style="font-size: 30px;"> <strong>Total</strong>₹ <span class="text-success" id="totall" style="font-size: 30px ; font-weight: 600;">{{total}}</span></li>
                             </ul>
                         </div>
                     </div>
@@ -498,7 +527,9 @@
             </div>
         </div>
         <br>
-      
+       <div class="Place-order btn-hover text-center">
+                                            <button type="submit " class="btn  border border-success bg-success " style="font-size: 20px; "> <strong> Place Order</strong>  </button>
+                                        </div>
 
         {{!-- <div class="customer-zone mb-20">
             <p class="cart-page-title"><a class="checkout-click3" href="#">Click here for your Coupon !</a></p>
@@ -590,11 +621,11 @@
                     <div class="row">
                         <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                             <div class="footer-widget footer-about mb-40">
-                                <div class="footer-logo">
+                                {{!-- <div class="footer-logo">
                                     <a href="index.html"><img src="/User/images/logo/looo.jpeg" alt="logo"></a>
                                 </div>
                                 <p>Lorem ipsum dolor sit amet, cons adipi elit, sed do eiusmod tempor incididunt ut
-                                    aliqua.</p>
+                                    aliqua.</p> --}}
                                 <div class="payment-img">
                                     <a href="#"><img src="/user/images/icon-img/payment.png" alt="logo"></a>
                                 </div>
@@ -653,109 +684,51 @@
     </footer>
     <!-- Mobile Menu start -->
     <div class="off-canvas-active">
-        <a class="off-canvas-close"><i class=" ti-close "></i></a>
-        <div class="off-canvas-wrap">
-            <div class="welcome-text off-canvas-margin-padding">
-                <p>Default Welcome Msg! </p>
-            </div>
-            <div class="mobile-menu-wrap off-canvas-margin-padding-2">
-                <div id="mobile-menu" class="slinky-mobile-menu text-left">
-                    <ul>
-                        <li>
-                            <a href="#">HOME</a>
-                            <ul>
-                                <li><a href="index.html">Home version 1 </a></li>
-                                <li><a href="index-2.html">Home version 2</a></li>
-                                <li><a href="index-3.html">Home version 3</a></li>
-                                <li><a href="index-4.html">Home version 4</a></li>
-                                <li><a href="index-5.html">Home version 5</a></li>
-                                <li><a href="index-6.html">Home version 6</a></li>
-                                <li><a href="index-7.html">Home version 7</a></li>
-                                <li><a href="index-8.html">Home version 8</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">SHOP</a>
+                <a class="off-canvas-close"><i class=" ti-close "></i></a>
+                <div class="off-canvas-wrap">
+                    <div class="welcome-text off-canvas-margin-padding">
+                        {{#if user}}
+                        <p>Welcome {{user.name}} !</p>
+                        {{else}}
+                        <p> Welcome Please Login! </p>
+                        {{/if}}
+                    </div>
+                    <div class="mobile-menu-wrap off-canvas-margin-padding-2">
+                        <div id="mobile-menu" class="slinky-mobile-menu text-left">
                             <ul>
                                 <li>
-                                    <a href="#">Shop Layout</a>
-                                    <ul>
-                                        <li><a href="shop.html">Standard Style</a></li>
-                                        <li><a href="shop-sidebar.html">Shop Grid Sidebar</a></li>
-                                        <li><a href="shop-list.html">Shop List Style</a></li>
-                                        <li><a href="shop-list-sidebar.html">Shop List Sidebar</a></li>
-                                        <li><a href="shop-right-sidebar.html">Shop Right Sidebar</a></li>
-                                        <li><a href="shop-location.html">Store Location</a></li>
-                                    </ul>
-                                </li>
+                                    <a href="/">HOME</a>
+
                                 <li>
-                                    <a href="#">Product Layout</a>
+                                    <a href="#">SHOP</a>
                                     <ul>
-                                        <li><a href="product-details.html">Tab Style 1</a></li>
-                                        <li><a href="product-details-2.html">Tab Style 2</a></li>
-                                        <li><a href="product-details-gallery.html">Gallery style </a></li>
-                                        <li><a href="product-details-affiliate.html">Affiliate style</a></li>
-                                        <li><a href="product-details-group.html">Group Style</a></li>
-                                        <li><a href="product-details-fixed-img.html">Fixed Image Style </a></li>
+                                        <li>
+                                            <a href="/allproducts">View All Products</a>
+
+                                        </li>
+
                                     </ul>
                                 </li>
+
+                                <li>
+                                    <a href="#">SHOP BY CATEGORY </a>
+
+                                    <ul class="sub-menu-style">
+                                        {{#each category}}
+                                        <li><a href="/veg/{{this._id}}"> {{this.category}}</a></li>
+
+                                        {{/each}}
+                                    </ul>
+
+                                </li>
+                                </li>
+
                             </ul>
-                        </li>
-                        <li>
-                            <a href="#">PAGES </a>
-                            <ul>
-                                <li><a href="about-us.html">About Us </a></li>
-                                <li><a href="cart.html">Cart Page</a></li>
-                                <li><a href="checkout.html">Checkout </a></li>
-                                <li><a href="my-account.html">My Account</a></li>
-                                <li><a href="wishlist.html">Wishlist </a></li>
-                                <li><a href="compare.html">Compare </a></li>
-                                <li><a href="contact-us.html">Contact us </a></li>
-                                <li><a href="login-register.html">Login / Register </a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">BLOG </a>
-                            <ul>
-                                <li><a href="blog.html">Blog Standard </a></li>
-                                <li><a href="blog-sidebar.html">Blog Sidebar</a></li>
-                                <li><a href="blog-details.html">Blog Details</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="about-us.html">ABOUT US</a>
-                        </li>
-                        <li>
-                            <a href="contact-us.html">CONTACT US</a>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-            <div class="language-currency-wrap language-currency-wrap-modify">
-                <div class="currency-wrap border-style">
-                    <a class="currency-active" href="#">$ Dollar (US) <i class=" ti-angle-down "></i></a>
-                    <div class="currency-dropdown">
-                        <ul>
-                            <li><a href="#">Taka (BDT) </a></li>
-                            <li><a href="#">Riyal (SAR) </a></li>
-                            <li><a href="#">Rupee (INR) </a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="language-wrap">
-                    <a class="language-active" href="#"><img src="assets/images/icon-img/flag.png" alt=""> English <i
-                            class=" ti-angle-down "></i></a>
-                    <div class="language-dropdown">
-                        <ul>
-                            <li><a href="#"><img src="assets/images/icon-img/flag.png" alt="">English </a></li>
-                            <li><a href="#"><img src="assets/images/icon-img/spanish.png" alt="">Spanish</a></li>
-                            <li><a href="#"><img src="assets/images/icon-img/arabic.png" alt="">Arabic </a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     </div>
     <!-- All JS is here -->
 

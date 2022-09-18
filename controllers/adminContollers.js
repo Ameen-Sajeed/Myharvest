@@ -100,7 +100,7 @@ const getUsers = (req, res) => {
 
     adminhelper.viewUsers().then((data) => {
         console.log(data)
-        res.render('admin/User', { data })
+        res.render('admin/ViewUser', { data })
     })
 
 }
@@ -137,8 +137,8 @@ const unblockUsers = (req, res) => {
 /*                                get Products                                */
 /* -------------------------------------------------------------------------- */
 
-const getproducts = (req, res) => {
-    adminhelper.ViewProduct().then((data) => {
+const getproducts = async(req, res) => {
+    await adminhelper.ViewProduct().then((data) => {
         // console.log(product)
         res.render('admin/product', { data })
     })
@@ -249,6 +249,7 @@ const getCategory = (req, res) => {
 /* -------------------------------------------------------------------------- */
 
 const postCategory = (req, res) => {
+ 
     adminhelper.addcategory(req.body).then((response) => {
         console.log(response)
         if(response.status){

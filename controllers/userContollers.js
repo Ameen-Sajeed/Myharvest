@@ -1,6 +1,7 @@
 const adminhelper = require("../helpers/adminhelper")
 const userhelper = require("../helpers/userhelper")
 const paypal = require('paypal-rest-sdk')
+const { response } = require("../app")
 
 
 
@@ -19,24 +20,32 @@ const homepage = async (req, res) => {
 
 
    
-    adminhelper.ViewProduct().then((products) => {
+   await adminhelper.ViewProduct().then(async(products) => {
         var product =[]
         for(var i=0;i<4;i++){
            product[i]= products[i]
 
         }
 
-        adminhelper.viewCategory().then((category) => {
-            adminhelper.viewBanner().then((banner) => {
-                    res.render('user/index', { product, category, user, cartcount, banner });
 
+        await adminhelper.viewCategory().then(async(category) => {
+            await   adminhelper.viewBanner().then((banner) => {
+                // let list = await userhelper.viewCartProducts(user)
+
+                // console.log(list,"uiiuiuiii");
+
+                       res.render('user/index', { product, category, user, cartcount, banner });
+   
+
+       })
+   
 
                 })
 
             })
-        })
+        }
 
-    }
+    
 
 
 
@@ -310,6 +319,11 @@ const postcheckout = async (req, res) => {
                     res.json(response)
                 })
             }
+            else if(req.body['payment-method']== 'walletPay'){
+
+                response.wallet = true
+                res.json(response)
+            }
 
 
         })
@@ -337,6 +351,12 @@ const postcheckout = async (req, res) => {
                     response.payPal = true;
                     res.json(response)
                 })
+            }
+
+            else if(req.body['payment-method']== 'walletPay'){
+
+                response.wallet = true
+                res.json(response)
             }
 
 
@@ -408,9 +428,13 @@ const getProfile = async (req, res) => {
     let details = await userhelper.viewAddress(req.session.user._id)
     let Id=req.params.id
     let coupon = await adminhelper.viewCoupens(Id)
+    let disCoup = await userhelper.displayCoupon(req.session.user._id)
+
+    console.log(disCoup,"90909090");
+
 
     
-        res.render('user/userProfile', { orders, user, details , coupon})
+        res.render('user/userProfile', { orders, user, details , coupon,disCoup})
     }
 
     
@@ -426,8 +450,15 @@ const getProfile = async (req, res) => {
 
 
 const orderProducts = async (req, res) => {
+    let user = req.session.user
     let products = await userhelper.getOrderProduct(req.params.id)
-    res.render('user/orderProducts', { products, user })
+    let orders = await userhelper.getOrderSummary(req.params.id)
+
+    console.log(products,"9887878");
+
+    console.log(orders,"90909090");
+  
+    res.render('user/orderProducts', { products, user,orders })
 }
 
 
@@ -516,8 +547,14 @@ const verifyPayment = (req, res) => {
 /*                                Address Page                                */
 /* -------------------------------------------------------------------------- */
 
-const addressPage = (req, res) => {
-    res.render('user/AddUserAddress')
+const addressPage = async(req, res) => {
+    let user = req.session.user
+   let category = await adminhelper.viewCategory()
+   var cartcount
+   if (req.session.user) {
+       cartcount = await userhelper.getCartCount(req.session.user._id)
+   }
+    res.render('user/AddUserAddress',{category,user,cartcount})
 }
 
 
@@ -525,9 +562,15 @@ const addressPage = (req, res) => {
 /*                        get Checkout add address                            */
 /* -------------------------------------------------------------------------- */
 
-const getCheckoutAddress = (req, res) => {
+const getCheckoutAddress = async(req, res) => {
+    let user = req.session.user
+   let category = await adminhelper.viewCategory()
+   var cartcount
+   if (req.session.user) {
+       cartcount = await userhelper.getCartCount(req.session.user._id)
+   }
 
-    res.render('user/postcheckadd')
+    res.render('user/postcheckadd',{user,category,cartcount})
 }
 
 
@@ -698,7 +741,7 @@ const PostremoveCoupon = async (req, res) => {
 const getWishList = async(req,res)=>{
 
 
-
+    let user = req.session.user
     let category = await adminhelper.viewCategory()
     var cartcount
     if (req.session.user) {
@@ -802,7 +845,7 @@ const getEmptyCart =(req,res)=>{
 /*                             GET RESET PASSWORD                             */
 /* -------------------------------------------------------------------------- */
 
-const getResetPassword =(req,res)=>{
+const getResetPassword = async(req,res)=>{
     let user = req.session.user
     let chpsd = null;
     let notchpsd = null;
@@ -814,7 +857,9 @@ const getResetPassword =(req,res)=>{
       notchpsd = true;
       req.session.notpsdCh = null;
     }
-    res.render('user/changePassword',{user,
+
+    let category = await adminhelper.viewCategory()
+    res.render('user/changePassword',{user,category,
         chpsd,
         notchpsd})
 }
@@ -843,12 +888,43 @@ await userhelper.updatePassword(req.body).then((response)=>{
   });
 }
 
+/* -------------------------------------------------------------------------- */
+/*                                 USE WALLET                                 */
+/* -------------------------------------------------------------------------- */
+
+const useWallet =async(req,res)=>{
+    console.log(user._id,'uid');
+    let walletAmt = await userhelper.getUserWallet(user._id)
+    console.log(walletAmt.wallet,"mnmnja");
+    await userhelper.useWallet(req.body,user,walletAmt.wallet).then((response)=>{
+
+        console.log("helooooi");
+        console.log(response);
+        res.json(response)
+    })
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                REMOVE WALLET                               */
+/* -------------------------------------------------------------------------- */
+
+removeWallet =async (req,res)=>{
+console.log('hiiiii');
+    let walletAmt = await userhelper.getUserWallet(user._id)
+    console.log(walletAmt,'ggggggg'); 
+    console.log(req.body,'0000000000007'); 
+    await userhelper.removeWallet(user,req.body,walletAmt.wallet).then((response)=>{
+
+        res.json(response)
+    })
+}
+
 module.exports = {
     getLogin, getLoginRegister, postSignup, postLogin, getproductsDetails, homepage, nodata, getcart,
     getcheckout, getOtp, confirmOtp, postOtp, postconfirmOtp, getSignUp, addtocart, logout, getProfile,
     changeproductquantity, vegetables, postcheckout, deleteCart, orderplaced, verifyPayment, orderProducts, PostremoveCoupon, PostapplyCoupon,
     addressPage, postAddressAdd, getEditAddress, postEditAddress, addressdelete,
      PostCheckoutAddress, getCheckoutAddress, orderCancel,getWishList,getAddtoWishList,
-     postRemoveWishProducts,ReturnOrder,getallProducts,postCartclear,getEmptyCart,getResetPassword,PostResetPassword
+     postRemoveWishProducts,ReturnOrder,getallProducts,postCartclear,getEmptyCart,getResetPassword,PostResetPassword,useWallet
 }
 

@@ -10,6 +10,9 @@ const client = require('twilio')(otp.accountSID, otp.authToken)
 const Razorpay = require('razorpay')
 const paypal = require('paypal-rest-sdk')
 const moment = require("moment")
+const { resolve } = require('path')
+const { response } = require('../app')
+// const { WASI } = require('wasi')
 // const { resolve } = require('path')
 
 var instance = new Razorpay({
@@ -128,6 +131,9 @@ module.exports = {
     Viewproductdetail: (proId,error) => {
         return new Promise(async (resolve, reject) => {
         
+            try {
+
+            
             let data = await db.get().collection(collection.PRODUCTCOLLECTION).findOne({_id:objectId(proId)})
             // let data = await db.get().collection(collection.PRODUCTCOLLECTION).aggregate([
 
@@ -163,7 +169,10 @@ module.exports = {
                       
                console.log(data,"2222222222222");
                resolve(data)
-
+            } catch(error){
+                resolve(error)
+                console.log("error");
+            }
             
       
         
@@ -876,6 +885,31 @@ module.exports = {
     },
 
 
+    /* -------------------------------------------------------------------------- */
+    /*                                Order Summary                               */
+    /* -------------------------------------------------------------------------- */
+
+    getOrderSummary:(orderId) => {
+
+
+        return new Promise(async (resolve, reject) => {
+            let orderItems = await db.get().collection(collection.ORDERCOLLECTION).aggregate([
+
+                {
+                    $match: { _id: objectId(orderId) }
+                },
+
+          
+             
+
+            ]).toArray()
+
+            console.log(orderItems);
+            resolve(orderItems)
+        })
+
+    },
+
 
     /* -------------------------------------------------------------------------- */
     /*                             View Order Product:                            */
@@ -898,7 +932,8 @@ module.exports = {
                 {
                     $project: {
                         item: '$products.item',
-                        quantity: '$products.quantity'
+                        quantity: '$products.quantity',
+                        totalAmount:1
                     }
 
                 },
@@ -915,14 +950,15 @@ module.exports = {
                     $project: {
                         item: 1,
                         quantity: 1,
-                        product: { $arrayElemAt: ['$product', 0] }
+                        product: { $arrayElemAt: ['$product', 0] },
+                        totalAmount:1
                     }
                 },
 
             ]).toArray()
 
             // console.log(cartItems[0].products)
-
+            // console.log(orderItems);
             resolve(orderItems)
         })
 
@@ -1328,6 +1364,113 @@ updatePassword:(data)=>{
 
             resolve(response)
         }
+
+    })
+},
+
+
+/* -------------------------------------------------------------------------- */
+/*                                 USE WALLET                                 */
+/* -------------------------------------------------------------------------- */
+
+useWallet:(total,user)=>{
+
+    console.log(total,user,'kkkkkkk');
+
+    let response ={}
+
+    return new Promise(async(resolve,reject)=>{
+
+        if(total.amount < user.wallet){
+
+            response.amount =0
+            response.wallet = user.wallet - total.amount
+
+            response.status = true
+            console.log('00000000000',response);
+            resolve(response)
+        }
+        else {
+            console.log('hrrrrr');
+            console.log(total);
+            console.log(user.wallet,'oooppp');
+            response.amount = total.amount- user.wallet
+            console.log(response.amount);
+            response.wallet = 0
+            response.status = true
+            console.log("5555555",response);
+            resolve(response)
+        }
+    })
+},
+
+
+/* -------------------------------------------------------------------------- */
+/*                                REMOVE WALLET                               */
+/* -------------------------------------------------------------------------- */
+
+removeWallet :(user,currentWallet)=>{
+
+    return new Promise((resolve,reject)=>{
+
+        // console.log(user,"000000");
+        // console.log(currentWallet,"8888");
+        let response ={}
+
+        if(currentWallet.wallet == 0){
+            response.total = user.wallet + parseInt(currentWallet.amount)
+            response.wallet = user.wallet
+            console.log(response,"totaaaaaaaaaaaal");
+        }
+        else {
+            response.total = user.wallet - parseInt(currentWallet.wallet)
+            response.wallet = user.wallet
+            console.log(response, 'responsetotal');
+        }
+        console.log(response,'lllllllrspn');
+
+        resolve(response)
+    })
+},
+
+/* -------------------------------------------------------------------------- */
+/*                           GET USER WALLET DETAILS                          */
+/* -------------------------------------------------------------------------- */
+
+getUserWallet:(id)=>{
+
+    return new Promise(async(resolve,reject)=>{
+
+        await db.get().collection(collection.USERCOLLECTION).findOne({_id:objectId(id)}).then((data)=>{
+            console.log(data,'dataaaaszzzxxsds');
+            resolve(data)
+        })
+    })
+},
+
+
+/* -------------------------------------------------------------------------- */
+/*                      DISPLAY COUPONS IN THE USER SIDE                      */
+/* -------------------------------------------------------------------------- */
+
+displayCoupon:(userId)=>{
+
+    return new Promise(async(resolve,reject)=>{
+        let coupons = await db.get().collection(collection.COUPENCOLLECTION).aggregate([
+
+    
+            {
+                $unwind: '$Users'
+            },
+            {
+                
+                    $match: { Users: objectId(userId) }
+                
+            }
+        ]).toArray()
+
+        console.log("nmnmmm",coupons);
+        resolve({couponUsed:true})
 
     })
 }

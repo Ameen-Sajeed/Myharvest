@@ -18,6 +18,10 @@ const db = require('./config/connection')
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
+/* -------------------------------------------------------------------------- */
+/*                             IF EQUAL TO HELPER                             */
+/* -------------------------------------------------------------------------- */
+
 var Hbs = hbs.create({});
 Hbs.handlebars.registerHelper('if_eq', function(a, b, opts) {
   if(a == b) // Or === depending on your needs

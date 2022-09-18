@@ -523,5 +523,71 @@ alert('hai')
 }
 
 
+/* -------------------------------------------------------------------------- */
+/*                                REMOVE WALLET                               */
+/* -------------------------------------------------------------------------- */
+
+function removeWallet(){
+
+    console.log("jkkjkjkj");
+
+    let wallet = document.getElementById('walletBalance').innerHTML
+    let amount = document.getElementById('totall').innerHTML
+    console.log(wallet,'wassss');
+    console.log(amount,"jkjk");
+    $.ajax({
+        url:'/checkout/removewallet',
+        data:{wallet,amount},
+        method:'post',
+        success:(response)=>{
+            alert('hooooooo')
+            console.log(response,'iiiiiii');
+            document.getElementById('totall').innerHTML = response.total
+            document.getElementById('payable').value = response.total
+            document.getElementById('walletBalance').innerHTML = response.wallet
+            document.getElementById('cod').hidden = false
+            document.getElementById('online').hidden = false
+            document.getElementById('wallet-div').hidden = true
+        }
+
+    })
+}
+    
+/* -------------------------------------------------------------------------- */
+/*                                 USE WALLET                                 */
+/* -------------------------------------------------------------------------- */
+
+function usewallet(){
+
+    console.log("helloooo");
+
+    let amount = document.getElementById('totall').innerHTML
+    console.log(amount,"oooooo");
+    $.ajax({
+        url:'/checkout/usewallet',
+        data:{amount},
+        method:'post',
+        success:(response)=>{
+            alert('helooooo')
+            console.log(response);
+            if(response.status){
+                document.getElementById('totall').innerHTML = response.amount
+                document.getElementById('payable').value = response.amount
+                document.getElementById('walletBalance').innerHTML = response.wallet
+                document.getElementById('cod').hidden = true
+                document.getElementById('wallet-div').hidden = true
+                if(response.amount == 0){
+                    document.getElementById('online').hidden = true
+                    console.log(response.amount);
+                    document.getElementById('wallet-div').hidden = false
+                    document.getElementById('customCheck50').checked = true
+                   
+                }
+            }
+        }
+    })
+}
+
+
 
 

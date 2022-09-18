@@ -1331,43 +1331,7 @@ salesMonthlyGraph: () => {
   },
 
 
-  /* -------------------------------------------------------------------------- */
-  /*                               Display CoupoN                               */
-  /* -------------------------------------------------------------------------- */
-
-
-  displayCoupon: (user) => {
-
-    console.log(user, "cvbjknlm,");
-    return new Promise(async (resolve, reject) => {
-
-      let data = await db.get().collection(collection.COUPENCOLLECTION).aggregate([
-
-        {
-          $match: {
-            "Users": { $in: [objectId(user)] }
-          }
-        },
-      ]).toArray()
-
-      if (data) {
-
-        response.status = true
-        resolve(response)
-      }
-      else {
-
-        response.status = false
-
-        resolve(response)
-
-      }
-
-
-      // console.log(data,"99999999000000");
-      // resolve(data)
-    })
-  },
+  
 
 
 

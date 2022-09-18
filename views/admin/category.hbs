@@ -134,7 +134,7 @@
             <div class="container-fluid">
                 <div class="page-head">
                     <h4 class="my-2">Add a Category</h4>
-                    <form class="form-horizontal " method="post" action="/admin-category">
+                    <form class="form-horizontal " method="post" action="/admin-category" enctype="multipart/form-data">
                         <fieldset>
 
                             <!-- Form Name -->
@@ -148,6 +148,15 @@
                                     <textarea class="form-control" id="product_description" name="category" required=""></textarea>
                                 </div>
 
+                            </div>
+
+                             <label class="col-md-4 control-label" for="filebutton">Choose an image</label>
+                                <div class="col-md-4">
+                                    <img src="" alt="" style="width: 100px; height:auto" id="imgView">
+
+                                    <input id="filebutton" name="image" class="input-file" type="file"
+                                        onchange="viewImage(event)" multiple>
+                                </div>
                             </div>
 
                             <!-- Button -->
