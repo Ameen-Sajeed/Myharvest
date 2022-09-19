@@ -122,11 +122,11 @@ $('#checkout-form').submit((e) => {
 
 
                         }
-                        else if (wallet){
-                            location.href='/ordersuccess'
+                        // else if (wallet){
+                        //     location.href='/ordersuccess'
 
 
-                        }
+                        // }
 
 
                     }
@@ -434,12 +434,15 @@ function addToWishlist(proId){
         method:'get',
         success:(response)=>{
             if(response.status){
-                swal({
-                    title: "Product added to Wishlist!",
-                    text: "You have added to you Wishlist !",
-                    icon: "success",
-                    button: "OK!",
-                });            }
+                // swal({
+                //     title: "Product added to Wishlist!",
+                //     text: "You have added to you Wishlist !",
+                //     icon: "success",
+                //     button: "OK!",
+                // });  
+                alertify.set('notifier','position', 'top-center');
+                alertify.success('Product Added to your Wishlist ! ');
+            }          
         }
     })
 

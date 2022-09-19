@@ -192,45 +192,38 @@
             </div>
         </header>
         <!-- mini cart start -->
-        <div class="sidebar-cart-active">
+       <div class="sidebar-cart-active">
             <div class="sidebar-cart-all">
                 <a class="cart-close" href="#"><i class="pe-7s-close"></i></a>
                 <div class="cart-content">
                     <h3>Shopping Cart</h3>
                     <ul>
+                        {{#each list}}
                         <li>
                             <div class="cart-img">
-                                <a href="#"><img src="assets/images/cart/cart-1.jpg" alt=""></a>
+                                <a href="#"><img src="/Admin/images/{{this.image.[0]}}" alt=""></a>
                             </div>
                             <div class="cart-title">
-                                <h4><a href="#">Stylish Swing Chair</a></h4>
+                                <h4><a href="#"></a></h4>
                                 <span> 1 × $49.00 </span>
                             </div>
                             <div class="cart-delete">
                                 <a href="#">×</a>
                             </div>
                         </li>
-                        <li>
-                            <div class="cart-img">
-                                <a href="#"><img src="assets/images/cart/cart-2.jpg" alt=""></a>
-                            </div>
-                            <div class="cart-title">
-                                <h4><a href="#">Modern Chairs</a></h4>
-                                <span> 1 × $49.00 </span>
-                            </div>
-                            <div class="cart-delete">
-                                <a href="#">×</a>
-                            </div>
-                        </li>
+                        {{/each}}
                     </ul>
-                    <div class="cart-total">
+                    {{!-- <div class="cart-total">
                         <h4>Subtotal: <span>$170.00</span></h4>
-                    </div>
+                    </div> --}}
                     <div class="cart-btn btn-hover">
-                        <a class="theme-color" href="">view cart</a>
+                        <a class="theme-color" href="/cart">View cart</a>
                     </div>
+                    {{!-- <div class="checkout-btn btn-hover">
+                        <a class="theme-color" href="/checkout">Checkout</a>
+                    </div> <br> --}}
                     <div class="checkout-btn btn-hover">
-                        <a class="theme-color" href="checkout.html">checkout</a>
+                        <a class="theme-color" href="/wishlist">Wishlist</a>
                     </div>
                 </div>
             </div>
@@ -352,9 +345,8 @@
 
 <div>
                   <h3 class="text-dark"style="font-weight: 600; font-size: 30px; ">Select Your Payment Method</h3> <br>
-                  <div class="" id ="cod">
 
-            <div class="form-check">
+            <div class="form-check" id="cod">
                 <input class="form-check-input" type="radio" name="payment-method" id="cod" value="COD" checked/>
                 <label class="form-check-label" for="flexRadioDefault1" style="font-size: 15px;"> Cash on Delivery </label>
             </div>
@@ -373,12 +365,13 @@
                 <label class="form-check-label" for="flexRadioDefault2" style="font-size: 15px;"> PayPal </label>
             </div>
 
-</div>
-               <div class="form-check" id="wallet-div" hidden>
+              </div>
+              
+
+                 <div class="form-check" id="wallet-div" hidden>
                 <input class="form-check-input" type="radio" name="payment-method" id="customCheck50" value="walletPay"  />
                 <label class="form-check-label" for="flexRadioDefault2" style="font-size: 15px;"> Use Wallet Balance </label>
-            </div><br>
-</div>
+               </div><br>
 </div>
                               
 

@@ -300,7 +300,8 @@ const postcheckout = async (req, res) => {
       
 
         let discountAmount = (totalPrice * parseInt(couponVerify.value)) / 100
-        let amount = totalPrice - discountAmount
+        let amount = totalPrice - discountAmount 
+
 
         await userhelper.placeOrder(req.body, products, amount,subtotal).then((orderId) => {
 
@@ -308,6 +309,14 @@ const postcheckout = async (req, res) => {
                 res.json({ codSuccess: true })
 
             } else if (req.body['payment-method'] === 'RAZORPAY') {
+             
+                if(req.body.useWallet =='1'){
+
+                    console.log(req.body.payable,"oooooooo");
+                    amount = req.body.payable              
+                }
+              
+
                 userhelper.generateRazorpay(orderId, amount).then((response) => {
                     response.razorPay = true;  
                     res.json(response)
@@ -322,9 +331,8 @@ const postcheckout = async (req, res) => {
                 })
             }
             else if(req.body['payment-method'] === 'walletPay'){
-
-                response.wallet = true
-                res.json(response)
+                res.json({ codSuccess: true })
+                
             }
 
 
@@ -341,6 +349,14 @@ const postcheckout = async (req, res) => {
                 res.json({ codSuccess: true })
 
             } else if (req.body['payment-method'] === 'RAZORPAY') {
+
+                   if(req.body.useWallet =='1'){
+
+                    console.log(req.body.payable,"oooooooo");
+                    totalPrice = req.body.payable              
+                }
+
+                console.log(req.body.payable,"oooooooo");
                await userhelper.generateRazorpay(orderId, totalPrice).then((response) => {
                     response.razorPay = true;
                     res.json(response)
@@ -348,7 +364,11 @@ const postcheckout = async (req, res) => {
             }
 
             else if (req.body['payment-method'] === 'PAYPAL') {
-                // console.log('vjhdbfjbfh');
+                if(req.body.useWallet =='1'){
+
+                    console.log(req.body.payable,"oooooooo");
+                    totalPrice = req.body.payable              
+                }
               await  userhelper.generatePayPal(orderId, totalPrice).then((response) => {
                     response.payPal = true;
                     res.json(response)
@@ -357,12 +377,7 @@ const postcheckout = async (req, res) => {
               
             else if(req.body['payment-method']=== 'walletPay'){
 
-                console.log("popopopopo");
-
-                wallet = true
-
-                console.log(wallet,"8989898");
-                res.json(wallet)
+                res.json({ codSuccess: true })
             }
 
 
@@ -436,7 +451,7 @@ const getProfile = async (req, res) => {
     let coupon = await adminhelper.viewCoupens(Id)
     let disCoup = await userhelper.displayCoupon(req.session.user._id)
 
-    console.log(disCoup,"90909090");
+    console.log(details,"90909090");
 
 
     
@@ -506,12 +521,13 @@ const vegetables = async(req, res) => {
     }
 
     console.log(Id);
+    let category = await adminhelper.viewCategory()
      await adminhelper.ViewcatOffProduct(Id).then((data)=>{
         
         
             // console.log(data,"8888888888");
 
-            res.render('user/veg',{data,user,cartcount})
+            res.render('user/veg',{data,user,cartcount,category})
     })
 
 }
@@ -914,7 +930,7 @@ const useWallet =async(req,res)=>{
 /*                                REMOVE WALLET                               */
 /* -------------------------------------------------------------------------- */
 
-removeWallet =async (req,res)=>{
+const removeWalletUser =async (req,res)=>{
 console.log('hiiiii');
     let walletAmt = await userhelper.getUserWallet(user._id)
     // console.log(walletAmt,'ggggggg'); 
@@ -931,6 +947,6 @@ module.exports = {
     changeproductquantity, vegetables, postcheckout, deleteCart, orderplaced, verifyPayment, orderProducts, PostremoveCoupon, PostapplyCoupon,
     addressPage, postAddressAdd, getEditAddress, postEditAddress, addressdelete,
      PostCheckoutAddress, getCheckoutAddress, orderCancel,getWishList,getAddtoWishList,
-     postRemoveWishProducts,ReturnOrder,getallProducts,postCartclear,getEmptyCart,getResetPassword,PostResetPassword,useWallet
+     postRemoveWishProducts,ReturnOrder,getallProducts,postCartclear,getEmptyCart,getResetPassword,PostResetPassword,useWallet,removeWalletUser
 }
 

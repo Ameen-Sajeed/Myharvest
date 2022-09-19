@@ -327,9 +327,9 @@
                             <div class="single-category-wrap-2 text-center" data-aos="fade-up" data-aos-delay="200">
                                 <div class="category-img-2">
                                     <a href="/veg/{{this._id}}">
-                                        <img class="category-normal-img" src="/user/images/icon-img/discount.png"
+                                        <img class="category-normal-img" src="/User/images/icon-img/discount.png"
                                             alt="">
-                                        <img class="/user/images/icon-img/discount.png" src="" alt="">
+                                        <img class="/User/images/icon-img/discount.png" src="" alt="">
                                     </a>
                                 </div>
                                 <div class="category-content-2 category-content-2-black">
@@ -421,7 +421,7 @@
                                                 onclick="addToWishlist('{{this._id}}')"><i
                                                     class="pe-7s-like"></i></button>
                                             <button class="product-action-btn-1" title="Quick View"
-                                                data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                data-bs-toggle="modal" data-bs-target="#exampleModal{{this._id}}">
                                                 <i class="pe-7s-look"></i>
                                             </button>
                                         </div>
@@ -530,7 +530,7 @@
                                         </div> --}}
 
                                         <div class="payment-img">
-                                            <a href="#"><img src="user/images/icon-img/payment.png" alt="logo"></a>
+                                            <a href="#"><img src="User/images/icon-img/payment.png" alt="logo"></a>
                                         </div>
                                     </div>
                                 </div>
@@ -581,14 +581,15 @@
                 </div>
             </footer>
             <!-- Product Modal start -->
-            <div class="modal fade quickview-modal-style" id="exampleModal" tabindex="-1" role="dialog">
+            {{#each product}}
+            <div class="modal fade quickview-modal-style" id="exampleModal{{this._id}}" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <a href="" class="close" data-bs-dismiss="modal" aria-label="Close"><i
                                     class=" ti-close "></i></a>
                         </div>
-                        {{#each product}}
+                        
                         <div class="modal-body">
 
                             <div class="row gx-0">
@@ -609,15 +610,12 @@
                                       
                                         <p>{{this.description}}</p>
                                         <div class="product-details-action-wrap">
-                                            <div class="product-quality">
-                                                <input class="cart-plus-minus-box input-text qty text" name="qtybutton"
-                                                    value="1">
-                                            </div>
+                                         
                                             <div class="single-product-cart btn-hover">
-                                                <a href="#">Add to cart</a>
+                                                <a href="#"  onclick="addtocart('{{this._id}}')">Add to cart</a>
                                             </div>
                                             <div class="single-product-wishlist">
-                                                <a title="Wishlist" href="#"><i class="pe-7s-like"></i></a>
+                                                <a title="Wishlist" href="#" onclick="addToWishlist('{{this._id}}')"><i class="pe-7s-like"></i></a>
                                             </div>
                                            
                                         </div>
@@ -625,10 +623,11 @@
                                 </div>
                             </div>
                         </div>
-                        {{/each}}
+                        
                     </div>
                 </div>
             </div>
+            {{/each}}
             <!-- Product Modal end -->
             <!-- Mobile Menu start -->
             <div class="off-canvas-active">

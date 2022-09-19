@@ -62,7 +62,7 @@
                     <div class="row align-items-center">
                         <div class="col-lg-3 col-md-6 col-6">
                             <div class="logo">
-                                <a href="/login-register"><img src="/User/images/logo/looo-removebg-preview.png"
+                                <a href="#"><img src="/User/images/logo/looo-removebg-preview.png"
                                         alt="logo" style="margin-top: 15px;" ></a>
                             </div>
                         </div>
@@ -215,14 +215,13 @@
                                                 <th class="width-thumbnail"></th>
                                                 <th class="width-name">Product</th>
                                                 <th class="width-price"> Unit price </th>
-                                                <th class="width-stock-status"> Stock status </th>
                                                 <th class="width-wishlist-cart"></th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {{#each products}}
                                             <tr>
-                                                <td class="product-remove"><a class="btn" onclick="removeFromWishlist('{{this._id}}','{{this.product._id}}')">×</a></td>
+                                               <center><td class="product-remove" ><a class="btn" onclick="removeFromWishlist('{{this._id}}','{{this.product._id}}')">×</a></td></center> 
                                                 <td class="product-thumbnail">
                                                     <a href="/productdetails/{{this._id}}"> <img src="/Admin/images/{{this.product.image.[1]}} "   alt=""></a>
                                                 </td>

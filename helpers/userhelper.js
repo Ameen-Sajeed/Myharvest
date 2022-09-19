@@ -53,7 +53,8 @@ module.exports = {
 
 
                 userData.wallet = 0;
-                userData.state = true;
+                userData.state = true
+                userData.referral= '' + (Math.floor(Math.random() * 90000) + 10000)
                 userData.password = await bcrypt.hash(userData.password, 10)
                 db.get().collection(collection.USERCOLLECTION).insertOne(userData).then((data) => {
                     resolve(data.insertedId)
@@ -507,7 +508,7 @@ module.exports = {
     placeOrder: (order, products, total,subtotal) => {
         return new Promise((resolve, reject) => {
             console.log(order,"55555555555555555555555");
-            let status = order['payment-method'] == 'COD' ? 'placed' : 'pending'
+            let status = order['payment-method'] === 'COD' || order['payment-method'] === 'walletPay' ? 'placed' : 'pending'
             let orderObj = {
                 deliveryDetails: objectId(order['payment-address']),
 
@@ -904,7 +905,7 @@ module.exports = {
 
             ]).toArray()
 
-            console.log(orderItems);
+            console.log(orderItems,"90909");
             resolve(orderItems)
         })
 

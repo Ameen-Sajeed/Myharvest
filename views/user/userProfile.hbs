@@ -130,7 +130,7 @@
     display: block;
     margin: 0 auto;
     text-align: center;
-    font-size:15px;
+    font-size:13px;
     font-family: 'Lucida Sans','trebuchet MS',Arial,Helvetica;
 }
 .pink {
@@ -271,7 +271,7 @@
                             <div class="row align-items-center">
                                 <div class="col-lg-3 col-md-6 col-6">
                                     <div class="logo">
-                                        <a href="/login-register"><img
+                                        <a href="#"><img
                                                 src="/User/images/logo/looo-removebg-preview.png"
                                                 alt="logo" style="margin-top:
                                                 15px;"></a>
@@ -557,19 +557,15 @@
                                                                         <div
                                                                             class="col-md-8
                                                                             col-sm-12
+                                                                        
                                                                             profile-info">
                                                                             <div
-                                                                                class="header-fullname">{{user.name}}
+                                                                                class="header-fullname col-md-4
+                                                                                    col-sm-4
+                                                                                    col-xs-12
+                                                                                    stats-col" style="font-size: 1rem; justify-content: center;">{{user.name}}
                                                                                 </div>
-                                                                            <a
-                                                                                href="/changepassword"
-                                                                                class="btn-sm
-                                                                                btn-palegreen
-                                                                                btn-sm
-                                                                                btn-follow">
-                                                                           
-                                                                                Reset Password
-                                                                            </a>
+                                                                       
                                                                             
                                                                         </div>
                                                                         <div
@@ -588,7 +584,7 @@
                                                                                         class="stats-value
                                                                                         pink">{{user.phone}}</div>
                                                                                     <div
-                                                                                        class="stats-title">Contact-NO:</div>
+                                                                                        class="stats-title" style="font-size: 0.7rem;">Contact-NO:</div>
                                                                                 </div>
                                                                                 <div
                                                                                     class="col-md-4
@@ -599,7 +595,7 @@
                                                                                         class="stats-value
                                                                                         pink">{{user.email}}</div>
                                                                                     <div
-                                                                                        class="stats-title">Email</div>
+                                                                                        class="stats-title " style="font-size: 0.7rem;">Email</div>
                                                                                 </div>
                                                                                 <div
                                                                                     class="col-md-4
@@ -610,8 +606,72 @@
                                                                                         class="stats-value
                                                                                         pink">₹{{user.wallet}}</div>
                                                                                     <div
-                                                                                        class="stats-title">Wallet Balance</div>
+                                                                                        class="stats-title" style="font-size: 0.7rem;"> Wallet Balance</div>
                                                                                 </div>
+                                                                                   <div
+                                                                                    class="col-md-4
+                                                                                    col-sm-4
+                                                                                    col-xs-12
+                                                                                    stats-col " >
+                                                                                    <div
+                                                                                        class="stats-value
+                                                                                        pink">{{user.referral}}</div>
+                                                                                    <div
+                                                                                        class="stats-title  " style="font-size: 0.7rem;">My Refferal ID :</div>
+                                                                               
+                                                                                  
+
+                                                                                   </div>
+
+                                                                                   <div
+                                                                                    class="col-md-4
+                                                                                    col-sm-4
+                                                                                    col-xs-12
+                                                                                    stats-col " >
+                                                                          
+                                                                   
+                                                                               
+                                                                                      <div
+                                                                                        class="stats-value
+                                                                                        pink ">{{details.[0].name}}
+                                                                                        </div>
+                                                                                          <div
+                                                                                        class="stats-value
+                                                                                        pink">{{details.[0].address}}</div>
+                                                                                          <div
+                                                                                        class="stats-value
+                                                                                        pink">{{details.[0].pincode}}</div>
+                                                                                          <div
+                                                                                        class="stats-value
+                                                                                        pink ">{{details.[0].state}}</div>
+                                                                                          <div
+                                                                                        class="stats-value
+                                                                                        pink ">{{details.[0].numebr}}</div>
+                                                                                    <div
+                                                                                    
+                                                                                        class="stats-title " style="font-size: 0.7rem;">My Address</div>
+
+                                                                                   </div>
+                                                                                    <div   class="col-md-4
+                                                                                    col-sm-4
+                                                                                    col-xs-12
+                                                                                    stats-col ">
+                                                                                               <a
+                                                                                href="/changepassword"
+                                                                                class="btn-sm
+                                                                                btn-palegreen
+                                                                                btn-sm
+                                                                                btn-follow">
+                                                                           
+                                                                                Reset Password
+                                                                            </a>
+                                                                                    </div>
+
+                                                                                    
+                                                                             
+
+                                                                                   
+                                                                              
                                                                             </div>
                                                                             
                                                                         </div>
