@@ -10,8 +10,8 @@ const client = require('twilio')(otp.accountSID, otp.authToken)
 const Razorpay = require('razorpay')
 const paypal = require('paypal-rest-sdk')
 const moment = require("moment")
-const { resolve } = require('path')
-const { response } = require('../app')
+// const { resolve } = require('path')
+// const { response } = require('../app')
 // const { WASI } = require('wasi')
 // const { resolve } = require('path')
 
@@ -1375,7 +1375,7 @@ updatePassword:(data)=>{
 
 useWallet:(total,user)=>{
 
-    console.log(total,user,'kkkkkkk');
+    // console.log(total,user,'kkkkkkk');
 
     let response ={}
 
@@ -1387,18 +1387,18 @@ useWallet:(total,user)=>{
             response.wallet = user.wallet - total.amount
 
             response.status = true
-            console.log('00000000000',response);
+            console.log('00000000000',response.wallet);
             resolve(response)
         }
         else {
-            console.log('hrrrrr');
-            console.log(total);
-            console.log(user.wallet,'oooppp');
+            // console.log('hrrrrr');
+            // console.log(total);
+            // console.log(user.wallet,'oooppp');
             response.amount = total.amount- user.wallet
-            console.log(response.amount);
+            // console.log(response.amount);
             response.wallet = 0
             response.status = true
-            console.log("5555555",response);
+            // console.log("5555555",response);
             resolve(response)
         }
     })

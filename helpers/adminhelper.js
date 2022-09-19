@@ -1,7 +1,6 @@
 var db = require('../config/connection')
 var collection = require('../config/collection')
 var bcrypt = require('bcrypt')
-const { ObjectId, Collection } = require('mongodb')
 const { response } = require('express')
 var objectId = require('mongodb').ObjectId
 
@@ -1331,43 +1330,6 @@ salesMonthlyGraph: () => {
   },
 
 
-  
-
-
-
-
-  /* -------------------------------------------------------------------------- */
-  /*                             ADD CATEGORY OFFER                             */
-  /* -------------------------------------------------------------------------- */
-
-
-  // categoryOffer: (data) => {
-  //   return new Promise(async (resolve, reject) => {
-
-  //     await db.get().collection(collection.CATEGORYOFFERCOLLECTION).insertOne(data).then((response) => {
-
-  //       resolve(response)
-  //       console.log(response, "_________________");
-  //     })
-  //   })
-
-  // },
-
-  /* -------------------------------------------------------------------------- */
-  /*                             VIEW CATEGORY OFFER                            */
-  /* -------------------------------------------------------------------------- */
-
-  // viewCategoryOffer: () => {
-  //   return new Promise(async (resolve, reject) => {
-
-  //     await db.get().collection(collection.CATEGORYOFFERCOLLECTION).find().toArray().then((response) => {
-
-  //       resolve(response)
-  //       console.log(response, ".......................");
-  //     })
-
-  //   })
-  // },
 
   /* -------------------------------------------------------------------------- */
   /*                       FIND PRODUCT FOR CATEGORY OFFER                      */
@@ -1439,21 +1401,6 @@ salesMonthlyGraph: () => {
 
 
 
-  /* -------------------------------------------------------------------------- */
-  /*                            DELETE CATEGORY OFFER                           */
-  /* -------------------------------------------------------------------------- */
-
-//   deleteCategoryOffer: (catId) => {
-//     return new Promise(async (resolve, reject) => {
-
-//       await db.get().collection(collection.CATEGORYOFFERCOLLECTION).deleteOne({ _id: objectId(catId) }).then((response) => {
-
-
-//         resolve(response)
-//       })
-//     })
-//   }
-
-// }
+ 
 
 }

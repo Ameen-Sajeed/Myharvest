@@ -292,7 +292,9 @@ const postcheckout = async (req, res) => {
 
     let couponVerify = await adminhelper.couponVerify(req.session.user._id)
 
-    console.log("logging req - body", req.body);
+    console.log(req.body,"7876767676");
+
+    // console.log("logging req - body", req.body);
     if (couponVerify.code == req.body.couponcode ) { 
 
       
@@ -319,7 +321,7 @@ const postcheckout = async (req, res) => {
                     res.json(response)
                 })
             }
-            else if(req.body['payment-method']== 'walletPay'){
+            else if(req.body['payment-method'] === 'walletPay'){
 
                 response.wallet = true
                 res.json(response)
@@ -332,14 +334,14 @@ const postcheckout = async (req, res) => {
     }
     else {
 
-        await userhelper.placeOrder(req.body, products, totalPrice,subtotal).then((orderId) => {
+        await userhelper.placeOrder(req.body, products, totalPrice,subtotal).then(async(orderId) => {
 
             if (req.body['payment-method'] === 'COD') {
                 let resp = userhelper.cartClear(req.session.user._id)
                 res.json({ codSuccess: true })
 
             } else if (req.body['payment-method'] === 'RAZORPAY') {
-                userhelper.generateRazorpay(orderId, totalPrice).then((response) => {
+               await userhelper.generateRazorpay(orderId, totalPrice).then((response) => {
                     response.razorPay = true;
                     res.json(response)
                 })
@@ -347,16 +349,20 @@ const postcheckout = async (req, res) => {
 
             else if (req.body['payment-method'] === 'PAYPAL') {
                 // console.log('vjhdbfjbfh');
-                userhelper.generatePayPal(orderId, totalPrice).then((response) => {
+              await  userhelper.generatePayPal(orderId, totalPrice).then((response) => {
                     response.payPal = true;
                     res.json(response)
                 })
             }
+              
+            else if(req.body['payment-method']=== 'walletPay'){
 
-            else if(req.body['payment-method']== 'walletPay'){
+                console.log("popopopopo");
 
-                response.wallet = true
-                res.json(response)
+                wallet = true
+
+                console.log(wallet,"8989898");
+                res.json(wallet)
             }
 
 
@@ -893,13 +899,13 @@ await userhelper.updatePassword(req.body).then((response)=>{
 /* -------------------------------------------------------------------------- */
 
 const useWallet =async(req,res)=>{
-    console.log(user._id,'uid');
+    // console.log(user._id,'uid');
     let walletAmt = await userhelper.getUserWallet(user._id)
-    console.log(walletAmt.wallet,"mnmnja");
+    // console.log(walletAmt.wallet,"mnmnja");
     await userhelper.useWallet(req.body,user,walletAmt.wallet).then((response)=>{
 
-        console.log("helooooi");
-        console.log(response);
+        // console.log("helooooi");
+        // console.log(response);
         res.json(response)
     })
 }
@@ -911,8 +917,8 @@ const useWallet =async(req,res)=>{
 removeWallet =async (req,res)=>{
 console.log('hiiiii');
     let walletAmt = await userhelper.getUserWallet(user._id)
-    console.log(walletAmt,'ggggggg'); 
-    console.log(req.body,'0000000000007'); 
+    // console.log(walletAmt,'ggggggg'); 
+    // console.log(req.body,'0000000000007'); 
     await userhelper.removeWallet(user,req.body,walletAmt.wallet).then((response)=>{
 
         res.json(response)

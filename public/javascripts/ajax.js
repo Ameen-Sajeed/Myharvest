@@ -122,6 +122,11 @@ $('#checkout-form').submit((e) => {
 
 
                         }
+                        else if (wallet){
+                            location.href='/ordersuccess'
+
+
+                        }
 
 
                     }
