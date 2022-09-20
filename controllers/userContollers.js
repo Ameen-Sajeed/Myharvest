@@ -448,7 +448,7 @@ const getProfile = async (req, res) => {
     let orders = await userhelper.getUserOrders(req.session.user._id)
     let details = await userhelper.viewAddress(req.session.user._id)
     let Id=req.params.id
-    let coupon = await adminhelper.viewCoupens(Id)
+    let coupon = await adminhelper.viewCoupens()
     let disCoup = await userhelper.displayCoupon(req.session.user._id)
 
     console.log(details,"90909090");
@@ -521,13 +521,18 @@ const vegetables = async(req, res) => {
     }
 
     console.log(Id);
-    let category = await adminhelper.viewCategory()
-     await adminhelper.ViewcatOffProduct(Id).then((data)=>{
-        
-        
-            // console.log(data,"8888888888");
+      await userhelper.productCount(Id).then(async(ct)=>{
 
-            res.render('user/veg',{data,user,cartcount,category})
+        let category = await adminhelper.viewCategory()
+        await adminhelper.ViewcatOffProduct(Id).then((data)=>{
+           
+           
+               // console.log(data,"8888888888");
+   
+               res.render('user/veg',{data,user,cartcount,category,ct})
+
+     })
+
     })
 
 }
@@ -576,7 +581,7 @@ const addressPage = async(req, res) => {
    if (req.session.user) {
        cartcount = await userhelper.getCartCount(req.session.user._id)
    }
-    res.render('user/AddUserAddress',{category,user,cartcount})
+    res.render('user/addUserAddress',{category,user,cartcount})
 }
 
 

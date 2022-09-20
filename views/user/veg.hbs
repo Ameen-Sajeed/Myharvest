@@ -526,11 +526,10 @@
                                 </div>
                                 <div class="sidebar-list-style">
                                     <ul>
-                                        <li><a href="shop.html">Vegetables<span>4</span></a></li>
-                                        <li><a href="shop.html">Fruits <span>9</span></a></li>
-                                        <li><a href="shop.html">Organic-Products <span>5</span></a></li>
-                                        <li><a href="shop.html">Diary-Products <span>3</span></a></li>
-                                   
+                                        {{#each ct}}
+                                        <li><a href="/veg/{{this._id._id}}">{{this._id.category}}<span><p>{{this.count}}</p></span></a></li>
+                                      {{!-- {{/each}} --}}
+                                   {{/each}}
                                     </ul>
                                 </div>
                             </div>

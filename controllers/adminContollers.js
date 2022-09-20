@@ -96,9 +96,9 @@ const admindashboard = async (req, res) => {
 /*                                  get Users                                 */
 /* -------------------------------------------------------------------------- */
 
-const getUsers = (req, res) => {
+const getUsers = async(req, res) => {
 
-    adminhelper.viewUsers().then((data) => {
+   await adminhelper.viewUsers().then((data) => {
         console.log(data)
         res.render('admin/ViewUser', { data })
     })

@@ -1343,15 +1343,18 @@ salesMonthlyGraph: () => {
       let products = await db.get().collection(collection.PRODUCTCOLLECTION).find({ category: objectId(catId) }).toArray()
 
 
-      console.log(products, "jjjjjjjjjjj");
+      console.log(products, "pppppppp");
 
       resolve(products)
 
+   
+   })
 
 
-    })
 
-  },
+    },
+
+  
 
 
 
