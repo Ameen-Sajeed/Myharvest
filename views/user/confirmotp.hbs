@@ -44,6 +44,38 @@
     <link rel="stylesheet" href="/User/css/plugins/easyzoom.css" />
     <link rel="stylesheet" href="/User/css/plugins/slinky.css" />
     <link rel="stylesheet" href="/User/css/style.css" />
+
+    <style>
+        #wrapper {
+    text-align:center;
+    border:1px solid #7F7F7F;
+    width:150px;
+    margin:25px auto;
+    padding:25px;
+    background-color:#E3E4E4;
+}
+
+
+
+button {
+    width:125px;
+    padding:10px;
+}
+
+.btnEnable {
+    background-color:#32a852;
+    border:1px solid #32a852;
+    color:#ffffff;
+    cursor:pointer;
+}
+
+.btnDisable {
+    background-color:#e20000;
+    border:1px solid #da0000;
+    color:#ffffff;
+    cursor:wait;
+}
+    </style>
 </head>
 
 
@@ -73,13 +105,12 @@
 
                     <div class="login-register-wrapper bg-light">
                         <div class="login-register-tab-list nav  ">
-                            {{!-- <a class="active" data-bs-toggle="tab" href="#lg1">
-                                <h4> login </h4>
-                            </a> --}}
-                            <a data-bs-toggle="tab" href="#lg2">
+                          
+                            <a data-bs-toggle="tab" href="#lg2"><br>
                                 <h6 style="font-size: 1rem;color: #32a852;">  A Six Digit OTP has been sent to your Mobile number +91-9*********  </h6>
                             </a>
                         </div>
+    
                         <div class="tab-content">
 
 
@@ -89,12 +120,23 @@
                                         <form action="/confirmotp" method="post">
                                             <input type="number" name="phone" id="phone"
                                                 placeholder="Type Your Six Digits OTP">
-
+                                             <center>
                                             <div class="button-box btn-hover  ">
-                                                <button type="submit"  style="background-color: #32a852;">Confirm OTP</button>
-
-                                            </div>
+                                                <button  type="submit" id="confirmOtp" style="background-color: #32a852;">Confirm OTP</button>
+                                              </div>
+                                              {{!-- <div id="wrapper"> --}}
+                                             <div>
+                                            </center>
+                                        <form action="/otp" method="post">
+                                            <p class="" style="color: #32a852;" id="">Resend OTP in : <a href="" id="myTimer"></div></p>
+                                          <button type="button" id="myBtn" class="btn-sm  btnDisable" disabled >
+                                           Please wait...
+                                          </button></a>
                                         </form>
+
+                                             </div>
+                                             
+                                          
                                     </div>
                                 </div>
                             </div>
@@ -224,6 +266,34 @@
                 </div>
             </div>
     </div>
+
+    
+
+    <script>
+        var sec = 120;
+var myTimer = document.getElementById('myTimer');
+var myBtn = document.getElementById('myBtn');
+window.onload = countDown;
+
+function countDown() {
+    if (sec < 10) {
+        myTimer.innerHTML = "0" + sec + " s";
+    } else {
+        myTimer.innerHTML = sec +" s";
+    }
+    if (sec <= 0) {
+        $("#myBtn").removeAttr("disabled");
+        $("#myBtn").removeClass().addClass("btnEnable");
+        $("#myTimer").fadeTo(2500, 0);
+        myBtn.innerHTML = "Resend";
+        return;
+    }
+    sec -= 1;
+    window.setTimeout(countDown, 1000);
+}
+    </script>
+
+    
     <!-- All JS is here -->
     <script src="/javascripts/script.js"></script>
     <script src="/User/js/vendor/modernizr-3.11.7.min.js"></script>

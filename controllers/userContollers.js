@@ -406,6 +406,7 @@ const getOtp = (req, res) => {
 const confirmOtp = (req, res) => {
     res.render('user/confirmotp')
 }
+
 /* -------------------------------------------------------------------------- */
 /*                                  Post OTP                                  */
 /* -------------------------------------------------------------------------- */
@@ -422,6 +423,25 @@ const postOtp = (req, res) => {
         }
     })
 }
+
+
+/* -------------------------------------------------------------------------- */
+/*                                 Resend Otp                                 */
+/* -------------------------------------------------------------------------- */
+
+const postresendOtp = (req, res) => {
+    userhelper.doOTP(req.body).then((response) => {
+        if (response.status) {
+            signupData = response.user
+            res.redirect('/confirmotp')
+        }
+        else {
+            res.redirect('/otp')
+        }
+    })
+}
+
+
 /* -------------------------------------------------------------------------- */
 /*                              POST Confirm OTP                              */
 /* -------------------------------------------------------------------------- */
@@ -952,6 +972,6 @@ module.exports = {
     changeproductquantity, vegetables, postcheckout, deleteCart, orderplaced, verifyPayment, orderProducts, PostremoveCoupon, PostapplyCoupon,
     addressPage, postAddressAdd, getEditAddress, postEditAddress, addressdelete,
      PostCheckoutAddress, getCheckoutAddress, orderCancel,getWishList,getAddtoWishList,
-     postRemoveWishProducts,ReturnOrder,getallProducts,postCartclear,getEmptyCart,getResetPassword,PostResetPassword,useWallet,removeWalletUser
+     postRemoveWishProducts,ReturnOrder,getallProducts,postCartclear,getEmptyCart,getResetPassword,PostResetPassword,useWallet,removeWalletUser,postresendOtp
 }
 

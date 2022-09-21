@@ -217,7 +217,7 @@
                                          
 
                                     {{!-- <div id="morris-line-chart" style="height: 360px;"></div>              --}}
-                                    <canvas id="myChart1" ></canvas>
+                                    <canvas id="myChart" ></canvas>
                                 </div>
                             </div>
                         </div>
@@ -226,7 +226,7 @@
                                 <div class="card-body">
                                     <h5 class="header-title pb-3">Payment Mode Chart</h5>           
                                     {{!-- <div id="morris-donut-chart"></div>               --}}
-                                      <canvas id="myChart" ></canvas>
+                                      <canvas id="myChart1" ></canvas>
                                 </div>
                             </div>
                         </div>
@@ -395,8 +395,8 @@
 
 
 <script>
-  const myChart = new Chart(
-    document.getElementById('myChart'),
+  const myChart1 = new Chart(
+    document.getElementById('myChart1'),
     config
   );
 </script>
@@ -489,14 +489,14 @@
 
 
       <script>
-  const labels1 = [
+  const labels4 = [
   {{#each year}}'{{_id}}',{{/each}}
    
 
   ];
 
-  const data1 = {
-    labels: labels1,
+  const data4 = {
+    labels: labels4,
     datasets: [{
       label: 'Sales Report',
       backgroundColor: ['#32a871','#325ba8','#db5c71']
@@ -508,17 +508,17 @@
     }]
   };
 
-  const config1 = {
+  const config4 = {
     type: 'bar',
-    data: data1,
+    data: data4,
     options: {}
   };
 </script>
 
 <script>
-  const myChart1 = new Chart(
-    document.getElementById('myChart1'),
-    config1
+  const myChart = new Chart(
+    document.getElementById('myChart'),
+    config4
   );
 </script>
 
@@ -527,14 +527,14 @@
 
     function Yearly(){
 
-  const labels1 = [
+  const labels5 = [
   {{#each year}}'{{_id}}',{{/each}}
    
 
   ];
 
-  const data1 = {
-    labels: labels1,
+  const data5 = {
+    labels: labels5,
     datasets: [{
       label: 'Sales Report',
       backgroundColor: '#2cb2c7'
@@ -546,16 +546,16 @@
     }]
   };
 
-  const config1 = {
+  const config5 = {
     type: 'line',
-    data: data1,
+    data: data5,
     options: {}
   };
 
 
-  const myChart1 = new Chart(
-    document.getElementById('myChart1'),
-    config1
+  const myChart = new Chart(
+    document.getElementById('myChart'),
+    config5
   );
 
 
@@ -565,14 +565,14 @@
 
       function Monthly(){
 
-  const labels1 = [
+  const labels6 = [
   {{#each month}}'{{_id}}',{{/each}}
    
 
   ];
 
-  const data1 = {
-    labels: labels1,
+  const data6 = {
+    labels: labels6,
     datasets: [{
       label: 'Sales Report',
       backgroundColor: '#E1AA9E'
@@ -584,16 +584,16 @@
     }]
   };
 
-  const config1 = {
+  const config6 = {
     type: 'line',
-    data: data1,
+    data: data6,
     options: {}
   };
 
 
-  const myChart1 = new Chart(
-    document.getElementById('myChart1'),
-    config1
+  const myChart = new Chart(
+    document.getElementById('myChart'),
+    config6
   );
 
 
@@ -604,14 +604,14 @@
 
       function daily(){
 
-  const labels1 = [
+  const labels7 = [
   {{#each daily}}'{{_id}}',{{/each}}
    
 
   ];
 
-  const data1 = {
-    labels: labels1,
+  const data7 = {
+    labels: labels7,
     datasets: [{
       label: 'Sales Report',
       backgroundColor: '#409456'
@@ -623,16 +623,16 @@
     }]
   };
 
-  const config1 = {
+  const config7 = {
     type: 'line',
-    data: data1,
+    data: data7,
     options: {}
   };
 
 
-  const myChart1 = new Chart(
-    document.getElementById('myChart1'),
-    config1
+  const myChart = new Chart(
+    document.getElementById('myChart'),
+    config7
   );
 
 
