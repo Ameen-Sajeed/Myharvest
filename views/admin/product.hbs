@@ -147,8 +147,8 @@
                                         <table class="table" id="my-table">
                                             <thead>
                                                 <tr>
-                                                    <th>S-no</th>
-                                                    <th>Image</th>
+                                                    {{!-- <th>S-no</th> --}}
+                                                    <th>Product-Image</th>
                                                     <th>Productname</th>
                                                     <th>Category </th>
                                                     <th>OfferPrice</th>
@@ -161,7 +161,7 @@
                                             {{#each data}}
                                             <tbody>
                                                 <tr>
-                                                    <td>{{ inc @index}}</td>
+                                                    {{!-- <td>{{ inc @index}}</td> --}}
                                                     <td><img style="width:110px;height:130px"
                                                             src="/Admin/images/{{this.image.[0]}}" alt="pic"></td>
                                                     <td>{{this.name}}</td>
@@ -200,6 +200,17 @@
                                             </tbody>
                                             {{/each}}
                                         </table>
+                                        <nav aria-label="Page navigation example">
+                               <ul class="pagination justify-content-end">
+                               <li class="page-item disabled">
+      {{!-- <a class="page-link" href="#" tabindex="-1">Previous</a> --}}
+                                </li>
+                               {{#each p}} <li class="page-item"><a class="page-link" href="/changePage?page={{this}}&&lim=4">{{this}}</a></li>{{/each}}
+                      <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                    </li>    
+                     </ul>
+                         </nav>
 
                                     </div>
                                 </div>

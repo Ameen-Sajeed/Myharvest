@@ -1,4 +1,5 @@
 const adminhelper = require("../helpers/adminhelper")
+const userhelper = require("../helpers/userhelper")
 // const userhelper = require("../helpers/userhelper")
 
 
@@ -138,9 +139,23 @@ const unblockUsers = (req, res) => {
 /* -------------------------------------------------------------------------- */
 
 const getproducts = async(req, res) => {
-    await adminhelper.ViewProduct().then((data) => {
-        // console.log(product)
-        res.render('admin/product', { data })
+
+   
+   let count =  await adminhelper.Procount()
+
+   let pageNum = Math.round(count)/4;
+
+   let p =[];
+   for(i=0;i<pageNum;i++){
+
+    p[i]=i+1;
+
+   }
+
+   console.log(p,"jinga");
+
+    await adminhelper.ViewProducts().then((data) => {
+        res.render('admin/product', { data,p })
     })
 }
 
@@ -151,6 +166,7 @@ const getproducts = async(req, res) => {
 
 const getaddproducts = (req, res) => {
 
+   
     adminhelper.viewCategory().then((category) => {
         res.render('admin/addproduct', { category: category})
     })
@@ -590,71 +606,37 @@ const postAddcatOffer = async(req,res)=>{
 }
 
 
-
 /* -------------------------------------------------------------------------- */
-/*                           GET VIEW CATEGORY OFFER                          */
-/* -------------------------------------------------------------------------- */
-
-// const ViewCategoryOffer = (req,res)=>{
-
-//     adminhelper.viewCategoryOffer().then((data)=>{
-
-//         res.render('admin/ViewCatoffer',{data})
-
-//     })
-// }
-
-
-/* -------------------------------------------------------------------------- */
-/*                            DELETE CATEGORY OFFER                           */
+/*                                 pagiantion                                 */
 /* -------------------------------------------------------------------------- */
 
+const getChangePage = async(req,res)=>{
 
-// const delCategoryOffer = async(req,res)=>{
+    
+   let count =  await adminhelper.Procount()
 
-//     catOffId = req.params.id
+   let pageNum = Math.round(count)/4;
 
-//     let catOffData = await adminhelper.viewCategoryOffer(catOffId)
+   let p =[];
+   for(i=0;i<pageNum;i++){
 
-//     adminhelper.ViewcatOffProduct(catOffData.category).then(async(response)=>{
+    p[i]=i+1;
 
-//         let deleteCatOFF = await adminhelper.deleteCategoryOffer(catOffId)
+   }
 
-//         res.json(response)
-//     })
-// }
+   console.log(p,"jinga");
 
+   let startIndex = parseInt(req.query.page)
 
-/* -------------------------------------------------------------------------- */
-/*                            GET ADD PRODUCT OFFER                           */
-/* -------------------------------------------------------------------------- */
-
-
-// const addProdOffer =(req,res)=>{
-
-//     adminhelper.ViewProduct().then((data)=>{
-  
-//         res.render('admin/addProdOffer',{data})
+   let limit = parseInt(req.query.lim)
 
 
-//     })
-
-// }
-
-/* -------------------------------------------------------------------------- */
-/*                            POST ADDPRODUCT OFFER                           */
-/* -------------------------------------------------------------------------- */
+    await adminhelper.getprodlist(startIndex,limit).then((data) => {
+        res.render('admin/product', { data,p })
+    })
 
 
-// const postAddProdOffer =(req,res)=>{
-
-
-
-// console.log(req.body,"gfffffffffffffffff");
- 
-// res.redirect('back')
-
-// }
+}
 
 
 module.exports = {
@@ -666,5 +648,5 @@ module.exports = {
      orderShipadmin,getCoupens,getAddCoupen,
      postAddCoupon,
      addCategoryOffer,
-     postAddcatOffer
+     postAddcatOffer,getChangePage
 };

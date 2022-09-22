@@ -850,16 +850,28 @@ const getallProducts = async(req,res)=>{
     if (req.session.user) {
         cartcount = await userhelper.getCartCount(req.session.user._id)
     }
+    let count =  await adminhelper.Procount()
+
+    let pageNum = Math.round(count)/4;
+ 
+    let p =[];
+    for(i=0;i<pageNum;i++){
+ 
+     p[i]=i+1;
+ 
+    }
+ 
+    console.log(p,"jinga");
 
     await adminhelper.ViewProduct().then(async(product) => {
         await adminhelper.viewCategory().then((category) => {
 
                     // console.log(wish,"xgfhjkl");
-                    res.render('user/allproducts', { product, category, user,cartcount })
+                    res.render('user/allproducts', { product, category, user,cartcount,p })
 
                 })
 
-            })
+            }) 
         
 
 
@@ -966,12 +978,49 @@ console.log('hiiiii');
     })
 }
 
+
+
+/* -------------------------------------------------------------------------- */
+/*                                 pagiantion                                 */
+/* -------------------------------------------------------------------------- */
+
+const getChangePageuser = async(req,res)=>{
+
+    
+    let count =  await adminhelper.Procount()
+ 
+    let pageNum = Math.round(count)/4;
+ 
+    let p =[];
+    for(i=0;i<pageNum;i++){
+ 
+     p[i]=i+1;
+ 
+    }
+ 
+    console.log(p,"jinga");
+ 
+    let startIndex = parseInt(req.query.page)
+ 
+    let limit = parseInt(req.query.lim)
+
+    console.log(limit,"popopo");  
+ 
+ 
+     await adminhelper.getprodlist(startIndex,limit).then((product) => {
+         res.render('user/allproducts', { product,p })
+     })
+ 
+ 
+ }
+
 module.exports = {
     getLogin, getLoginRegister, postSignup, postLogin, getproductsDetails, homepage, nodata, getcart,
     getcheckout, getOtp, confirmOtp, postOtp, postconfirmOtp, getSignUp, addtocart, logout, getProfile,
     changeproductquantity, vegetables, postcheckout, deleteCart, orderplaced, verifyPayment, orderProducts, PostremoveCoupon, PostapplyCoupon,
     addressPage, postAddressAdd, getEditAddress, postEditAddress, addressdelete,
      PostCheckoutAddress, getCheckoutAddress, orderCancel,getWishList,getAddtoWishList,
-     postRemoveWishProducts,ReturnOrder,getallProducts,postCartclear,getEmptyCart,getResetPassword,PostResetPassword,useWallet,removeWalletUser,postresendOtp
+     postRemoveWishProducts,ReturnOrder,getallProducts,postCartclear,getEmptyCart,getResetPassword,PostResetPassword,useWallet,
+     removeWalletUser,postresendOtp,getChangePageuser
 }
 

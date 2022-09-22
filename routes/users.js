@@ -1,6 +1,7 @@
 var express = require('express');
+const { getChangePage } = require('../controllers/adminContollers');
 // const { getlogout } = require('../controllers/adminContollers');
-const { getLogin, getLoginRegister, postSignup, postLogin, getproductsDetails, homepage, nodata, getcart, getcheckout, getOtp, confirmOtp, postOtp, getSignUp, postconfirmOtp, addtocart, logout, getProfile, changeproductquantity, vegetables, postcheckout, deleteCart, orderplaced, verifyPayment, orderProducts, addressPage, postAddressAdd, getEditAddress, postEditAddress, addressdelete, PostCheckoutAddress, getCheckoutAddress, orderCancel, PostapplyCoupon, PostremoveCoupon, getWishList, getAddtoWishList, postRemoveWishProducts, ReturnOrder, getallProducts, postCartclear, getEmptyCart, getResetPassword, PostResetPassword, useWallet, removeWalletUser, postresendOtp } = require('../controllers/userContollers');
+const { getLogin, getLoginRegister, postSignup, postLogin, getproductsDetails, homepage, nodata, getcart, getcheckout, getOtp, confirmOtp, postOtp, getSignUp, postconfirmOtp, addtocart, logout, getProfile, changeproductquantity, vegetables, postcheckout, deleteCart, orderplaced, verifyPayment, orderProducts, addressPage, postAddressAdd, getEditAddress, postEditAddress, addressdelete, PostCheckoutAddress, getCheckoutAddress, orderCancel, PostapplyCoupon, PostremoveCoupon, getWishList, getAddtoWishList, postRemoveWishProducts, ReturnOrder, getallProducts, postCartclear, getEmptyCart, getResetPassword, PostResetPassword, useWallet, removeWalletUser, postresendOtp, getChangePageuser } = require('../controllers/userContollers');
 const { removeWallet } = require('../helpers/userhelper');
 // const { addAddress } = require('../helpers/userhelper');
 const { verifyLogin } = require('../middlewares/verify');
@@ -112,4 +113,8 @@ router.post('/checkout/removewallet',removeWalletUser)
 
 
 router.post('/resendotp',postresendOtp)
+
+router.get('/changePageuser',getChangePageuser)
+
+
 module.exports = router;

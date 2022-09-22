@@ -1,5 +1,5 @@
 const express = require('express');
-const { admindashboard, getproducts, getUsers, getLogin, getaddproducts, postLogin, getlogout, postaddproducts, getCategory, postCategory, blockUsers, unblockUsers, deleteProducts, viewCategory, deletecategorys, updateproduct, getupdateproduct, postupdateproduct, getBanner, addBanner, postaddBanner, deleteBanner, viewOrders, donutChartData, getSalesReport, dailysales, monthlysales, yearlysales, orderCanceladmin, orderShipadmin, orderDeliveradmin, addCoupen, AddCoupen, getCoupens, getAddCoupen, postAddCoupon, addCategoryOffer, ViewCategoryOffer, delCategoryOffer, postAddcatOffer, addProdOffer } = require('../controllers/adminContollers');
+const { admindashboard, getproducts, getUsers, getLogin, getaddproducts, postLogin, getlogout, postaddproducts, getCategory, postCategory, blockUsers, unblockUsers, deleteProducts, viewCategory, deletecategorys, updateproduct, getupdateproduct, postupdateproduct, getBanner, addBanner, postaddBanner, deleteBanner, viewOrders, donutChartData, getSalesReport, dailysales, monthlysales, yearlysales, orderCanceladmin, orderShipadmin, orderDeliveradmin, addCoupen, AddCoupen, getCoupens, getAddCoupen, postAddCoupon, addCategoryOffer, ViewCategoryOffer, delCategoryOffer, postAddcatOffer, addProdOffer, getChangePage } = require('../controllers/adminContollers');
 const adminhelper = require('../helpers/adminhelper')
 const router = express.Router();
 const multer = require('../helpers/multer')
@@ -118,6 +118,9 @@ router.post('/admin-addCatOffer',postAddcatOffer)
 
 
 // router.get('/admin-ViewProdoffer',ViewCategoryOffer)
+
+router.get('/changePage',getChangePage)
+
 
 
 module.exports = router;

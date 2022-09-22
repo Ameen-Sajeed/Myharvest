@@ -102,10 +102,56 @@ module.exports = {
 
 
           }
+        },{
+          $limit: 8
         }
       ]).toArray()
 
-      console.log(categoryName, "2222222222222");
+      // console.log(categoryName, "2222222222222");
+      resolve(categoryName)
+
+    })
+
+  },
+
+
+  /* -------------------------------------------------------------------------- */
+  /*                          admin side products view                          */
+  /* -------------------------------------------------------------------------- */
+
+  ViewProducts: () => {
+
+    return new Promise(async (resolve, reject) => {
+
+      let categoryName = await db.get().collection(collection.PRODUCTCOLLECTION).aggregate([
+
+        {
+          $lookup: {
+
+            from: collection.CATEGORYCOLLECTION,
+            localField: 'category',
+            foreignField: '_id',
+            as: 'category'  
+          }
+        },
+        {
+          $project: {
+            category: { $arrayElemAt: ['$category', 0] },
+            name: 1,
+            image: 1, 
+            price: 1,
+            description: 1,
+            originalPrice: 1,
+            offerPercentage:1
+
+
+          }
+        },{
+          $limit: 4
+        }
+      ]).toArray()
+
+      // console.log(categoryName, "2222222222222");
       resolve(categoryName)
 
     })
@@ -1402,6 +1448,97 @@ salesMonthlyGraph: () => {
     })
   },
 
+
+    /* -------------------------------------------------------------------------- */
+    /*                           Pagination for products                          */
+    /* -------------------------------------------------------------------------- */
+
+
+    getprodlist:(startIndex,limit)=>{
+
+      return new Promise(async(resolve,reject)=>{
+
+
+        let index = ((startIndex-1)*limit)
+
+        console.log(index);
+      
+
+        let categoryName = await db.get().collection(collection.PRODUCTCOLLECTION).aggregate([
+
+          {
+            $lookup: {
+  
+              from: collection.CATEGORYCOLLECTION,
+              localField: 'category',
+              foreignField: '_id',
+              as: 'category'
+            }
+          },
+          {
+            $project: {
+              category: { $arrayElemAt: ['$category', 0] },
+              name: 1,
+              image: 1,
+              price: 1,
+              description: 1,
+              originalPrice: 1,
+              offerPercentage:1
+  
+  
+            }
+          },
+          {
+            $skip: index
+
+            
+          },{
+            $limit: limit
+
+            
+          }
+        ]).toArray()
+  
+        console.log(categoryName, "2222222222222");
+        resolve(categoryName)
+  
+      })
+
+
+      },
+  
+
+
+  /* -------------------------------------------------------------------------- */
+  /*                          Pagination Product Count                          */
+  /* -------------------------------------------------------------------------- */
+
+
+  Procount:()=>{
+
+    return new Promise (async(resolve,reject)=>{
+
+      await db.get().collection(collection.PRODUCTCOLLECTION).count().then((response)=>{
+
+
+        console.log(response,"hkhkhkjh");
+        resolve(response)
+      })
+    })
+  },
+
+
+  /* -------------------------------------------------------------------------- */
+  /*                            ADD WALLET COLLECTION                           */
+  /* -------------------------------------------------------------------------- */
+
+  addWallet:(userId)=>{
+
+    return new Promise((resolve,reject)=>{
+
+      
+    })
+  }
 
 
  
