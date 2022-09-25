@@ -23,7 +23,6 @@
     "mongodb": "^4.8.1",
     "morgan": "~1.9.1",
     "multer": "^1.4.5-lts.1",
-    "nice-invoice": "^1.1.8",
     "nodemon": "^2.0.19",
     "paypal-rest-sdk": "^1.8.1",
     "razorpay": "^2.8.3",

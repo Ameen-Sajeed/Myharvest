@@ -8,8 +8,8 @@ const client = require('twilio')(otp.accountSID, otp.authToken)
 const Razorpay = require('razorpay')
 const paypal = require('paypal-rest-sdk')
 const moment = require("moment")
-const { resolve } = require('path')
-const { response } = require('express')
+// const { resolve } = require('path')
+// const { response } = require('express')
 const CC = require("currency-converter-lt");
 
 
