@@ -32,6 +32,11 @@
 	============================================ -->
     <!-- CSS only -->
     <!-- CSS only -->
+       <link rel="stylesheet"
+            href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+        <!-- Default theme -->
+        <link rel="stylesheet"
+            href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -393,7 +398,7 @@
 
                 <div class="section-title-tab-wrap mb-75" data-aos="fade-up" data-aos-delay="200">
                     <div class="section-title-2">
-                        <h2>Hot Products</h2>
+                        <h2>Recenly Added Products</h2>
                     </div>
                     <div class="tab-style-1 nav">
                         {{!-- <a class="" href="#pro-1" data-bs-toggle="tab">New Arrivals </a> --}}
@@ -405,7 +410,7 @@
                 <div class="tab-content jump">
                     <div id="pro-1" class="tab-pane active">
                         <div class="row">
-                            {{#each product}}
+                            {{#each rec}}
                             <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                                 <div class="product-wrap mb-35" data-aos="fade-up" data-aos-delay="200">
                                     <div class="product-img img-zoom mb-25">
@@ -447,7 +452,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="service-area padding-10-row-col pb-20">
                     <div class="container">
                         <div class="row">
@@ -502,6 +506,66 @@
                         </div>
                     </div>
                 </div>
+
+               <div class="section-title-tab-wrap mb-75" data-aos="fade-up" data-aos-delay="200">
+                    <div class="section-title-2">
+                        <h2>Best Selling Products</h2>
+                    </div>
+                    <div class="tab-style-1 nav">
+                        {{!-- <a class="" href="#pro-1" data-bs-toggle="tab">New Arrivals </a> --}}
+                        {{!-- <a href="#pro-2" data-bs-toggle="tab" class=""> Best Sellers </a>
+                        <a href="#pro-3" data-bs-toggle="tab" class=""> Sale Items </a> --}}
+                    </div>
+                </div>
+
+
+                <div class="tab-content jump">
+                    <div id="pro-1" class="tab-pane active">
+                        <div class="row">
+                            {{#each product}}
+                            <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                                <div class="product-wrap mb-35" data-aos="fade-up" data-aos-delay="200">
+                                    <div class="product-img img-zoom mb-25">
+                                        <a href="/productdetails/{{this._id}}">
+                                            <img src="/Admin/images/{{this.image.[0]}}" alt="">
+
+                                        </a>
+                                        <div class="product-badge badge-top badge-right badge-pink">
+                                            <span>-{{this.offerPercentage}}%</span>
+                                        </div>
+                                        <div class="product-action-wrap">
+                                            <button class="product-action-btn-1" title="Wishlist" id="wishlistbtn"
+                                                onclick="addToWishlist('{{this._id}}')"><i
+                                                    class="pe-7s-like"></i></button>
+                                            <button class="product-action-btn-1" title="Quick View"
+                                                data-bs-toggle="modal" data-bs-target="#exampleModal{{this._id}}">
+                                                <i class="pe-7s-look"></i>
+                                            </button>
+                                        </div>
+                                        <div class="product-action-2-wrap">
+                                            <button onclick="addtocart('{{this._id}}')" class="product-action-btn-2"
+                                                title="Add To Cart"><i class="pe-7s-cart"></i>Add to Cart</button>
+                                            {{!-- <button onclick="()">Add to Cart</button> --}}
+                                        </div>
+                                    </div>
+                                    <div class="product-content">
+                                        <h3><a href="product-details.html">{{this.name}}</a></h3>
+                                        <div class="product-price">
+                                            <span class="old-price">₹{{this.originalPrice}}</span>
+                                            <span class="new-price">₹{{this.price}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            {{/each}}
+
+
+                        </div>
+                    </div>
+                </div>
+
+                
                 <div class="banner-area pb-100">
                     <div class="bg-img bg-padding-2" style="background-image:url(/Admin/images/1661747874942--banner3.jpg)">
                         <div class="container">
@@ -582,6 +646,56 @@
             </footer>
             <!-- Product Modal start -->
             {{#each product}}
+            <div class="modal fade quickview-modal-style" id="exampleModal{{this._id}}" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <a href="" class="close" data-bs-dismiss="modal" aria-label="Close"><i
+                                    class=" ti-close "></i></a>
+                        </div>
+                        
+                        <div class="modal-body">
+
+                            <div class="row gx-0">
+                                <div class="col-lg-5 col-md-5 col-12">
+                                    <div class="modal-img-wrap">
+                                        <img src="/Admin/images/{{this.image.[0]}}" alt=""
+                                            style="height: 150px; width: 200px;">
+                                    </div>
+                                </div>
+                                <div class="col-lg-7 col-md-7 col-12">
+                                    <div class="product-details-content quickview-content">
+                                        <h2>{{this.name}}</h2>
+                                        <div class="product-details-price">
+                                            <span class="old-price">₹1250.89 </span>
+                                            <span class="new-price">₹{{this.price}}</span>
+                                        </div>
+                                    
+                                      
+                                        <p>{{this.description}}</p>
+                                        <div class="product-details-action-wrap">
+                                         
+                                            <div class="single-product-cart btn-hover">
+                                                <a href="#"  onclick="addtocart('{{this._id}}')">Add to cart</a>
+                                            </div>
+                                            <div class="single-product-wishlist">
+                                                <a title="Wishlist" href="#" onclick="addToWishlist('{{this._id}}')"><i class="pe-7s-like"></i></a>
+                                            </div>
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+            <!-- Product Modal end -->
+
+            <!-- Product Modal start -->
+            {{#each rec}}
             <div class="modal fade quickview-modal-style" id="exampleModal{{this._id}}" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
@@ -713,6 +827,8 @@
         <script src="/User/js/plugins/easyzoom.js"></script>
         <script src="/User/js/plugins/slinky.min.js"></script>
         <script src="/User/js/plugins/ajax-mail.js"></script>
+           <script
+                src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
         <!-- Main JS -->
         <script src="/User/js/main.js"></script>
 </body>

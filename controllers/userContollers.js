@@ -3,6 +3,9 @@ const userhelper = require("../helpers/userhelper")
 const paypal = require('paypal-rest-sdk')
 const { response } = require("../app")
 
+const niceInvoice = require('nice-invoice')
+const { Db } = require("mongodb")
+
 
 
 
@@ -18,6 +21,7 @@ const homepage = async (req, res) => {
     }
     // let wish = await userhelper.getWishlistProducts(user._id)
 
+     
 
    
    await adminhelper.ViewProduct().then(async(products) => {
@@ -29,12 +33,14 @@ const homepage = async (req, res) => {
 
 
         await adminhelper.viewCategory().then(async(category) => {
-            await   adminhelper.viewBanner().then((banner) => {
+            await   adminhelper.viewBanner().then(async(banner) => {
                 // let list = await userhelper.viewCartProducts(user)
 
                 // console.log(list,"uiiuiuiii");
 
-                       res.render('user/index', { product, category, user, cartcount, banner });
+                let rec = await adminhelper.recentProducts()
+
+                       res.render('user/index', { product, category, user, cartcount, banner,rec });
    
 
        })
@@ -112,9 +118,15 @@ const getSignUp = (req, res) => {
 /*                                 user Signup                                */
 /* -------------------------------------------------------------------------- */
 
-const postSignup = (req, res, next) => {
+const postSignup = async(req, res, next) => {
 
-    userhelper.doSignup(req.body).then((response) => {
+    await userhelper.doSignup(req.body).then(async(response) => {
+
+   console.log(response,"bvbbbvbvbvb");
+
+
+
+        
         if (response.status) {
             // response.user.status = true
 
@@ -122,7 +134,7 @@ const postSignup = (req, res, next) => {
 
             res.redirect('/signup')
         }
-        else {
+        else {     
             console.log(response.status)
             res.redirect('/login')
         }
@@ -247,6 +259,8 @@ const deleteCart = (req, res) => {
 
 const getcheckout = async (req, res) => {
 
+
+    let wallet = await userhelper.getUserWallet(req.session.user._id)
     let products = await userhelper.getCartProductList(req.session.user._id)
 
 
@@ -275,7 +289,7 @@ console.log(products,"hjkl");
     console.log(total,'fghjkl');
 
  
-    res.render('user/checkout', { total, user, address,subtotal,products,category,cartcount })
+    res.render('user/checkout', { total, user, address,subtotal,products,category,cartcount,wallet })
     }
 
 
@@ -288,7 +302,7 @@ const postcheckout = async (req, res) => {
     let products = await userhelper.getCartProductList(req.body.userId)
     let totalPrice = await userhelper.getTotalAmount(req.body.userId)
     let subtotal = await userhelper.getSubTotalAmount(req.session.user._id)
-
+    let user =req.session.user
 
     let couponVerify = await adminhelper.couponVerify(req.session.user._id)
 
@@ -303,7 +317,7 @@ const postcheckout = async (req, res) => {
         let amount = totalPrice - discountAmount 
 
 
-        await userhelper.placeOrder(req.body, products, amount,subtotal).then((orderId) => {
+        await userhelper.placeOrder(req.body, products, amount,subtotal,user).then(async(orderId) => {
 
             if (req.body['payment-method'] === 'COD') {
                 res.json({ codSuccess: true })
@@ -317,7 +331,7 @@ const postcheckout = async (req, res) => {
                 }
               
 
-                userhelper.generateRazorpay(orderId, amount).then((response) => {
+               await userhelper.generateRazorpay(orderId, amount).then(async(response) => {
                     response.razorPay = true;  
                     res.json(response)
                 })
@@ -325,7 +339,9 @@ const postcheckout = async (req, res) => {
 
             else if (req.body['payment-method'] === 'PAYPAL') {
                 console.log('vjhdbfjbfh');
-                userhelper.generatePayPal(orderId, amount).then((response) => {
+                let price = await userhelper.converter(amount)
+                let convertPrice = parseInt(price);
+                userhelper.generatePayPal(orderId, convertPrice).then((response) => {
                     response.payPal = true;
                     res.json(response)
                 })
@@ -341,8 +357,13 @@ const postcheckout = async (req, res) => {
 
     }
     else {
+ 
+        let description = "Paid by WalletPay"
+        let debit = true;
 
-        await userhelper.placeOrder(req.body, products, totalPrice,subtotal).then(async(orderId) => {
+        console.log(req.body,"787878787");
+        await userhelper.placeOrder(req.body, products, totalPrice,subtotal,user).then(async(orderId) => {
+            console.log(orderId,"iuiuiuiu");
 
             if (req.body['payment-method'] === 'COD') {
                 let resp = userhelper.cartClear(req.session.user._id)
@@ -351,6 +372,14 @@ const postcheckout = async (req, res) => {
             } else if (req.body['payment-method'] === 'RAZORPAY') {
 
                    if(req.body.useWallet =='1'){
+
+                    let order = {
+
+                        orderId : orderId,
+                        amount : totalPrice
+                    }
+                    await userhelper.setWalletHistory(user,order,description,debit)
+
 
                     console.log(req.body.payable,"oooooooo");
                     totalPrice = req.body.payable              
@@ -365,18 +394,31 @@ const postcheckout = async (req, res) => {
 
             else if (req.body['payment-method'] === 'PAYPAL') {
                 if(req.body.useWallet =='1'){
+                    let order = {
+
+                        orderId : orderId,
+                        amount : totalPrice
+                    }
+                    await userhelper.setWalletHistory(user,order,description,debit)
 
                     console.log(req.body.payable,"oooooooo");
                     totalPrice = req.body.payable              
                 }
-              await  userhelper.generatePayPal(orderId, totalPrice).then((response) => {
+                let price = await userhelper.converter(totalPrice)
+                let convertPrice = parseInt(price);
+              await  userhelper.generatePayPal(orderId, convertPrice).then((response) => {
                     response.payPal = true;
                     res.json(response)
                 })
             }
               
             else if(req.body['payment-method']=== 'walletPay'){
+                let order = {
 
+                    orderId : orderId,
+                    amount : totalPrice
+                }
+                await userhelper.setWalletHistory(user,order,description,debit)      
                 res.json({ codSuccess: true })
             }
 
@@ -465,17 +507,23 @@ const postconfirmOtp = (req, res) => {
 /* -------------------------------------------------------------------------- */
 
 const getProfile = async (req, res) => {
+
+    let user = req.session.user 
+    let wallet = await userhelper.getUserWallet(req.session.user._id)
+    console.log(wallet);
     let orders = await userhelper.getUserOrders(req.session.user._id)
     let details = await userhelper.viewAddress(req.session.user._id)
-    let Id=req.params.id
+    let Id=req.params.id                                                          
     let coupon = await adminhelper.viewCoupens()
     let disCoup = await userhelper.displayCoupon(req.session.user._id)
+
+    let history = await userhelper.disWalletHistory(req.session.user._id)
 
     console.log(details,"90909090");
 
 
     
-        res.render('user/userProfile', { orders, user, details , coupon,disCoup})
+        res.render('user/userProfile', { orders, user, details , coupon,disCoup,history,wallet})
     }
 
     
@@ -501,6 +549,7 @@ const orderProducts = async (req, res) => {
   
     res.render('user/orderProducts', { products, user,orders })
 }
+
 
 
 /* -------------------------------------------------------------------------- */
@@ -700,8 +749,23 @@ const addressdelete = (req, res) => {
 /*                                Order Cancel                                */
 /* -------------------------------------------------------------------------- */
 
-const orderCancel = (req, res) => {
-    userhelper.cancelOrder(req.params.id).then((response) => {
+const orderCancel = async(req, res) => {
+    let user = req.session.user
+
+    console.log(req.body,"iooioioio");
+
+    let description = "Order Cancelled"
+  
+    await userhelper.cancelOrder(req.params.id,user).then(async(response) => {
+
+        console.log(response,"lklklklk");
+
+        let order = {
+
+            orderId : response.order._id,
+            amount : response.order.totalAmount
+        }
+        await userhelper.setWalletHistory(user,order,description)
 
         res.json(response)
     })
@@ -824,13 +888,18 @@ const postRemoveWishProducts =(req,res)=>{
 /*                                RETURN ORDER                                */
 /* -------------------------------------------------------------------------- */
 
-const ReturnOrder = (req,res)=>{
+const ReturnOrder = async(req,res)=>{
 
     let user = req.session.user
 
-    // console.log(req.body);
+    console.log(req.body);
 
-    userhelper.returnOrder(req.body,user).then((response)=>{
+    let description = "Order Returned"
+
+
+    await userhelper.setWalletHistory(user,req.body,description)
+
+    await userhelper.returnOrder(req.body,user).then((response)=>{
 
         res.json(response)
 
@@ -852,12 +921,12 @@ const getallProducts = async(req,res)=>{
     }
     let count =  await adminhelper.Procount()
 
-    let pageNum = Math.round(count)/4;
+    let pageNum = Math.round(count)/5;
  
     let p =[];
     for(i=0;i<pageNum;i++){
  
-     p[i]=i+1;
+     p[i]=i+1;              
  
     }
  
@@ -1014,6 +1083,22 @@ const getChangePageuser = async(req,res)=>{
  
  }
 
+ /* -------------------------------------------------------------------------- */
+ /*                              Invoice of order                              */
+ /* -------------------------------------------------------------------------- */
+
+
+ 
+const getInvoice = async(req,res)=>{
+
+ 
+    res.send('user/invoice')
+
+
+}  
+
+ 
+
 module.exports = {
     getLogin, getLoginRegister, postSignup, postLogin, getproductsDetails, homepage, nodata, getcart,
     getcheckout, getOtp, confirmOtp, postOtp, postconfirmOtp, getSignUp, addtocart, logout, getProfile,
@@ -1021,6 +1106,6 @@ module.exports = {
     addressPage, postAddressAdd, getEditAddress, postEditAddress, addressdelete,
      PostCheckoutAddress, getCheckoutAddress, orderCancel,getWishList,getAddtoWishList,
      postRemoveWishProducts,ReturnOrder,getallProducts,postCartclear,getEmptyCart,getResetPassword,PostResetPassword,useWallet,
-     removeWalletUser,postresendOtp,getChangePageuser
+     removeWalletUser,postresendOtp,getChangePageuser,getInvoice
 }
 

@@ -3,8 +3,6 @@ const collection = require('../config/collection')
 const bcrypt = require('bcrypt')
 const objectId = require('mongodb').ObjectId
 const otp = require('../config/otp')
-// const { serviceID } = require('../config/otp')
-// const { response } = require('../app')
 const { ObjectId } = require('mongodb')
 const client = require('twilio')(otp.accountSID, otp.authToken)
 const Razorpay = require('razorpay')
@@ -12,10 +10,8 @@ const paypal = require('paypal-rest-sdk')
 const moment = require("moment")
 const { resolve } = require('path')
 const { response } = require('express')
-// const { resolve } = require('path')
-// const { response } = require('../app')
-// const { WASI } = require('wasi')
-// const { resolve } = require('path')
+const CC = require("currency-converter-lt");
+
 
 var instance = new Razorpay({
     key_id: process.env.KEY_ID,
@@ -32,7 +28,7 @@ paypal.configure({
 module.exports = {
 
     /* -------------------------------------------------------------------------- */
-    /*                                 User SignUp                                */
+    /*                                 User SignUp                                */  
     /* -------------------------------------------------------------------------- */
 
     doSignup: (userData) => {
@@ -59,6 +55,7 @@ module.exports = {
                     userData.wallet = 0;
                     userData.state = true
                     userData.password = await bcrypt.hash(userData.password, 10)
+                    userData.walletHistory = []
 
                     userData.referral = '' + (Math.floor(Math.random() * 90000) + 10000)
 
@@ -93,7 +90,7 @@ module.exports = {
                     userData.wallet = 100;
                     userData.state = true
                     userData.password = await bcrypt.hash(userData.password, 10)
-
+                    userData.walletHistory = []
                     userData.referral = '' + (Math.floor(Math.random() * 90000) + 10000)
 
                     db.get().collection(collection.USERCOLLECTION).insertOne(userData).then(async (data) => {
@@ -553,8 +550,8 @@ module.exports = {
     /*                             checkout after Cart                            */
     /* -------------------------------------------------------------------------- */
 
-    placeOrder: (order, products, total, subtotal) => {
-        return new Promise((resolve, reject) => {
+    placeOrder: (order, products, total, subtotal,user) => {
+        return new Promise(async(resolve, reject) => {
             console.log(order, "55555555555555555555555");
             let status = order['payment-method'] === 'COD' || order['payment-method'] === 'walletPay' ? 'placed' : 'pending'
             let orderObj = {
@@ -571,7 +568,7 @@ module.exports = {
 
             if (order.couponcode) {
 
-                db.get().collection(collection.COUPENCOLLECTION).updateOne({ code: order.couponcode },
+                await db.get().collection(collection.COUPENCOLLECTION).updateOne({ code: order.couponcode },
                     {
                         $push: {
                             Users: objectId(order.userId)
@@ -581,6 +578,22 @@ module.exports = {
                     }
 
                 )
+            }
+            let balance 
+            if(order.useWallet == '1'){
+                console.log(order.useWallet,'orderwallet');
+            if(user.wallet <= total){
+                balance = 0
+                orderObj.walletDiscount = order.walletDiscount
+            }else{
+                balance = user.wallet - total
+                orderObj.walletDiscount = order.walletDiscount
+            }
+            let wallet = await db.get().collection(collection.USERCOLLECTION).updateOne({_id:objectId(order.userId)},
+                {
+                    $set:{wallet:balance}
+                })
+                console.log('ended wi');
             }
 
             db.get().collection(collection.ORDERCOLLECTION).insertOne(orderObj).then((response) => {
@@ -1030,8 +1043,28 @@ module.exports = {
     /*                                delete Orders                               */
     /* -------------------------------------------------------------------------- */
 
-    cancelOrder: (orderId) => {
+    cancelOrder: (orderId,user) => {
+
+        let response ={}
         return new Promise(async (resolve, reject) => {
+
+            console.log(orderId,"opoooooo");
+
+      let order = await db.get().collection(collection.ORDERCOLLECTION).findOne({_id:objectId(orderId)})
+
+
+      console.log(order,"89898989");
+
+      console.log(order.paymentMethod,"999999");
+      if(order.paymentMethod != "COD"){
+        console.log("yuyuiyiy");
+        user.wallet = user.wallet +parseInt(order.totalAmount)
+        console.log(user.wallet,'userwallet');
+      let wallet =  await db.get().collection(collection.USERCOLLECTION).updateOne({_id:objectId(order.userId)},
+        {
+            $set:{wallet:user.wallet}
+        })
+    }
 
             db.get().collection(collection.ORDERCOLLECTION).updateOne({
                 _id: objectId(orderId)
@@ -1040,11 +1073,13 @@ module.exports = {
             },
                 {
                     $set: {
-                        status: "cancelled"
+                        status: "Cancelled"
 
                     }
                 }).then((data) => {
-                    resolve(data)
+                    response.order = order
+                    console.log(response,"78787878");
+                    resolve(response)
                 })
 
 
@@ -1490,7 +1525,7 @@ module.exports = {
 
         return new Promise(async (resolve, reject) => {
 
-            await db.get().collection(collection.USERCOLLECTION).findOne({ _id: objectId(id) }).then((data) => {
+            await db.get().collection(collection.USERCOLLECTION).findOne({ _id: objectId(id) },{wallet:1}).then((data) => {
                 console.log(data, 'dataaaaszzzxxsds');
                 resolve(data)
             })
@@ -1570,8 +1605,159 @@ module.exports = {
 
     },
 
+/* -------------------------------------------------------------------------- */
+/*                             SET WALLET HISTORY                             */
+/* -------------------------------------------------------------------------- */
 
-  
 
+setWalletHistory:(user,order,description,debit)=>{
+
+    console.log(user,"iuiuiuiui");
+
+    console.log(debit,"popoo");
+
+   
+    return new Promise(async(resolve,reject)=>{
+         let walletDetails;
+
+        if(debit){
+        
+         walletDetails = {
+                date: new Date().toDateString(),
+                orderId: order.orderId,
+                amount: order.amount,
+                description:description,
+                debit: true
+              };
+        }
+    
+
+          else {
+
+             walletDetails = {
+                date: new Date().toDateString(),
+                orderId: order.orderId,
+                amount: order.amount,
+                description:description,
+                credit:true
+              };
+
+
+          }
+
+          console.log(walletDetails,"haiiii");
+
+      let userData = await db.get().collection(collection.USERCOLLECTION).findOne({_id: objectId(user._id)})
+
+
+          console.log(userData,"900909");
+
+          console.log(userData.walletHistory,"pippipip");
+         console.log("tyytyty");
+ 
+        db.get().collection(collection.USERCOLLECTION).updateOne({ _id: objectId(user._id )},
+        {
+            $push: { walletHistory: walletDetails }
+        }).then((response) => {
+            resolve(response)
+        })      
+
+            
+
+        })
+    },
+
+
+
+    /* -------------------------------------------------------------------------- */
+    /*                         Wallet history for viewing                         */
+    /* -------------------------------------------------------------------------- */
+
+
+    disWalletHistory:(user)=>{
+
+        return new Promise (async(resolve,reject)=>{
+
+            let his = await db.get().collection(collection.USERCOLLECTION).aggregate([
+
+ 
+                {
+                    $match : {_id:objectId(user)}
+                },
+                {
+                    $unwind: "$walletHistory"
+                },{
+                    $project : { _id:0,walletHistory:1}
+                }
+
+            ]).toArray()
+
+            console.log(his,"ytrevvx");
+            resolve(his)
+        })
+    },
+
+
+    /* -------------------------------------------------------------------------- */
+    /*                        Convert USD to INR for paypal                       */
+    /* -------------------------------------------------------------------------- */
+
+    converter: (price) => {
+        return new Promise((resolve, reject) => {
+          let currencyConverter = new CC({
+            from: "INR",
+            to: "USD",
+            amount: price,
+            isDecimalComma: false,
+          });
+          currencyConverter.convert().then((response) => {
+            resolve(response);
+          });
+        });
+      },
+
+
+      /* -------------------------------------------------------------------------- */
+      /*                                SEND MESSAGE                                */
+      /* -------------------------------------------------------------------------- */
+
+
+      addMessage :(msg,userId)=>{
+
+        return new Promise(async(resolve,reject)=>{
+
+          let user = await db.get().collection(collection.MESSAGECOLLECTION).find({user_data:objectId(userId)})
+          console.log(user,"hey there");
+
+          if(user.length>0){
+
+            await db.get().collection(collection.MESSAGECOLLECTION).updateOne({user_data:objectId(userId)},
+            {
+                $set:{
+                    adminMessage:[],
+                    adminView:false
+                },
+
+                $push:{
+                    userMessage: message.message
+                }
+            }).then((data)=>{
+
+                resolve(data)
+            })
+            
+          }
+          else{
+            console.log('\nfgdgdfgfdgdfgdgd');
+            await db.get().collection(collection.MESSAGECOLLECTION).insertOne({user_data:objectId(userId),
+            userMessage:[message.message],
+            adminMessage:[],
+            adminView:false
+            }).then((data)=>{
+                resolve()
+            })
+        }
+        })
+      }
 }
 

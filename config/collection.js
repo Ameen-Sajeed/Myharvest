@@ -17,6 +17,8 @@ module.exports={
 
     WISHLISTCOLLECTION:"Wishlist",
 
-    CATEGORYOFFERCOLLECTION:"Categoryoffer"
+    CATEGORYOFFERCOLLECTION:"Categoryoffer",
+
+    MESSAGECOLLECTION :"Message"
 
 }

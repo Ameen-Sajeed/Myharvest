@@ -224,24 +224,6 @@ module.exports = {
   /*                               update Product                               */
   /* -------------------------------------------------------------------------- */
   updateProduct: (id, productDetails) => {
-    // console.log(Id);
-  //   return new Promise(async (resolve, reject) => {
-  //     await db.get().collection(collection.PRODUCTCOLLECTION).updateOne({ _id: objectId(Id) }, {
-  //       $set: {
-  //         name: product.name,
-  //         index: product.index,
-  //         category: product.category,
-  //         price: product.price,
-  //         inventory: product.inventory,
-  //         description: product.description,
-  //         image: product.image
-  //       }
-  //     }).then((data) => {
-  //       // console.log(data);
-  //       resolve(data)
-  //     })
-  //   })
-  // },
 
   console.log(productDetails,'pd');
   return new Promise(async(resolve,reject)=>{
@@ -534,6 +516,21 @@ module.exports = {
 
   cancelOrder: (orderId) => {
     return new Promise(async (resolve, reject) => {
+
+      console.log(orderId,"opoooooo");
+
+      let order = await db.get().collection(collection.ORDERCOLLECTION).findOne({_id:objectId(orderId)})
+
+
+      console.log(order,"89898989");
+      if(order.paymentMethod != 'COD'){
+        user.wallet = user.wallet +parseInt(order.totalAmount)
+        console.log(user.wallet,'userwallet');
+      let wallet =  await db.get().collection(collection.USERCOLLECTION).updateOne({_id:objectId(order.userId)},
+        {
+            $set:{wallet:user.wallet}
+        })
+    }
 
       db.get().collection(collection.ORDERCOLLECTION).updateOne({
         _id: objectId(orderId)
@@ -1527,20 +1524,27 @@ salesMonthlyGraph: () => {
     })
   },
 
-
-  /* -------------------------------------------------------------------------- */
-  /*                            ADD WALLET COLLECTION                           */
-  /* -------------------------------------------------------------------------- */
-
-  addWallet:(userId)=>{
-
-    return new Promise((resolve,reject)=>{
-
-      
-    })
-  }
+/* -------------------------------------------------------------------------- */
+/*                           RECENTLY ADDED PRODUCTS                          */
+/* -------------------------------------------------------------------------- */
 
 
- 
+recentProducts:()=>{
+
+  return new Promise(async(resolve,reject)=>{
+
+   let rec = await db.get().collection(collection.PRODUCTCOLLECTION).aggregate([
+
+      {
+        $sort:{_id:-1}
+      },{
+        $limit: 8
+      }
+    ]).toArray()      
+    console.log(rec,"hai products here");
+
+    resolve(rec)
+  })
+}
 
 }

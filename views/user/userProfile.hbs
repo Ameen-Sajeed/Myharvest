@@ -42,6 +42,21 @@
 
         <!-- All CSS is here
 	============================================ -->
+    <!-- Font Awesome -->
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+  rel="stylesheet"
+/>
+<!-- Google Fonts -->
+<link
+  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+  rel="stylesheet"
+/>
+<!-- MDB -->
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.css"
+  rel="stylesheet"
+/>
         <link rel="stylesheet"
             href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
         <!-- Default theme -->
@@ -194,7 +209,284 @@
     -moz-box-shadow: 0 1px 2px rgba(0,0,0,.35);
     box-shadow: 0 1px 2px rgba(0,0,0,.35);
     background-color: #fbfbfb;
-}	              
+}
+
+
+.card{
+	background-color: #fff;
+	width: 280px;
+	border-radius: 33px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	padding: 2rem !important;
+}
+.top-container{
+	display: flex;
+	align-items: center;
+}
+.profile-image{
+	border-radius: 10px;
+	border: 2px solid #5957f9;
+}
+.name{
+	font-size: 15px;
+	font-weight: bold;
+	color: #272727;
+	position: relative;
+	top: 8px;
+}
+.mail{
+	font-size: 14px;
+	color: grey;
+	position: relative;
+	top: 2px;
+}
+.middle-container{
+	background-color: #eee;
+	border-radius: 12px;
+
+}
+.middle-container:hover {
+	border: 1px solid #5957f9;
+}
+.dollar-div{
+	background-color: #5957f9;
+	padding: 12px;
+	border-radius: 10px;
+}
+.round-div{
+	border-radius: 50%;
+	width: 35px;
+	height: 35px;
+	background-color: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+.dollar{
+	font-size: 16px !important;
+	color: #5957f9 !important;
+	font-weight: bold !important;
+}
+
+
+.current-balance{
+	font-size: 15px;
+	color: #272727;
+	font-weight: bold;
+}
+.amount{
+	color: #5957f9;
+	font-size: 16px;
+	font-weight: bold;
+}
+.dollar-sign{
+	font-size: 16px;
+	color: #272727;
+	font-weight: bold;
+}
+
+.recent-border{
+	border-left: 2px solid #5957f9;
+	display: flex;
+	align-items: center;
+
+}
+.recent-border:hover {
+	border-bottom: 1px solid #dee2e6!important;
+}
+
+.recent-orders{
+	font-size: 16px;
+	font-weight: 700;
+	color: #5957f9;
+	margin-left: 2px;
+}
+
+.wishlist{
+	font-size: 16px;
+	font-weight: 700;
+	color: #272727;
+
+}
+.wishlist-border:hover{
+	border-bottom: 1px solid #dee2e6!important;
+}
+.fashion-studio{
+	font-size: 16px;
+	font-weight: 700;
+	color: #272727;
+}
+.fashion-studio-border:hover {
+	border-bottom: 1px solid #dee2e6!important;
+} */
+
+/* main body */
+
+
+ 
+.form-control:focus {
+    box-shadow: none;
+    border-color: #BA68C8
+}
+
+.profile-button {
+    background: rgb(99, 39, 120);
+    box-shadow: none;
+    border: none
+}
+
+.profile-button:hover {
+    background: #682773
+}
+
+.profile-button:focus {
+    background: #682773;
+    box-shadow: none
+}
+
+.profile-button:active {
+    background: #682773;
+    box-shadow: none
+}
+
+.back:hover {
+    color: #682773;
+    cursor: pointer
+}
+
+.labels {
+    font-size: 11px
+}
+
+.add-experience:hover {
+    background: #BA68C8;
+    color: #fff;
+    cursor: pointer;
+    border: solid 1px #BA68C8
+}
+
+.main-body{
+    background-color: white;
+    max-width: 810px;
+    margin-right: 20px;
+    border-radius: 33px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	margin-right: auto;
+    margin-left: 60px;
+} 
+
+
+/* main-2 */
+
+
+.main-body {
+    padding: 15px;
+}
+.card {
+		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+		
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0 solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+}
+
+.card-body {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1rem;
+}
+
+.gutters-sm {
+    margin-right: -8px;
+    margin-left: -8px;
+}
+
+.gutters-sm>.col, .gutters-sm>[class*=col-] {
+    padding-right: 8px;
+    padding-left: 8px;
+}
+.mb-3, .my-3 {
+    margin-bottom: 1rem!important;
+}
+
+.bg-gray-300 {
+    background-color: #e2e8f0;
+}
+.h-100 {
+    height: 100%!important;
+}
+.shadow-none {
+    box-shadow: none!important;
+}
+
+
+
+.round-div{
+	border-radius: 50%;
+	width: 35px;
+	height: 35px;
+	background-color: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.dollar-div{
+	background-color: #5957f9;
+	padding: 12px;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+.middle-container{
+	background-color: #eee;
+	border-radius: 12px;
+
+}
+
+
+.current-balance{
+	font-size: 15px;
+	color: #272727;
+	font-weight: bold;
+}
+.amount{
+	color: #5957f9;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.dollar-sign{
+	font-size: 16px;
+	color: #272727;
+	font-weight: bold;
+}
+
+.middle-container:hover {
+	border: 1px solid #f7682a;
+}
+.inset{
+	border-style: ridge;
+}
+.welcome-p{
+	font-size: 25px;
+}
+
+.welcome-name{
+	font-size: 30px;
+	color: #f7682a;
+}
 </style>
     <body>
         <div class="main-wrapper main-wrapper-2">
@@ -398,41 +690,43 @@
                 </header>
                 <!-- mini cart start -->
                 <div class="sidebar-cart-active">
-            <div class="sidebar-cart-all">
-                <a class="cart-close" href="#"><i class="pe-7s-close"></i></a>
-                <div class="cart-content">
-                    <h3>Shopping Cart</h3>
-                    <ul>
-                        {{#each list}}
-                        <li>
-                            <div class="cart-img">
-                                <a href="#"><img src="/Admin/images/{{this.image.[0]}}" alt=""></a>
+                    <div class="sidebar-cart-all">
+                        <a class="cart-close" href="#"><i class="pe-7s-close"></i></a>
+                        <div class="cart-content">
+                            <h3>Shopping Cart</h3>
+                            <ul>
+                                {{#each list}}
+                                <li>
+                                    <div class="cart-img">
+                                        <a href="#"><img
+                                                src="/Admin/images/{{this.image.[0]}}"
+                                                alt=""></a>
+                                    </div>
+                                    <div class="cart-title">
+                                        <h4><a href="#"></a></h4>
+                                        <span> 1 × $49.00 </span>
+                                    </div>
+                                    <div class="cart-delete">
+                                        <a href="#">×</a>
+                                    </div>
+                                </li>
+                                {{/each}}
+                            </ul>
+                            {{!-- <div class="cart-total">
+                                <h4>Subtotal: <span>$170.00</span></h4>
+                            </div> --}}
+                            <div class="cart-btn btn-hover">
+                                <a class="theme-color" href="/cart">View cart</a>
                             </div>
-                            <div class="cart-title">
-                                <h4><a href="#"></a></h4>
-                                <span> 1 × $49.00 </span>
+                            {{!-- <div class="checkout-btn btn-hover">
+                                <a class="theme-color" href="/checkout">Checkout</a>
+                            </div> <br> --}}
+                            <div class="checkout-btn btn-hover">
+                                <a class="theme-color" href="/wishlist">Wishlist</a>
                             </div>
-                            <div class="cart-delete">
-                                <a href="#">×</a>
-                            </div>
-                        </li>
-                        {{/each}}
-                    </ul>
-                    {{!-- <div class="cart-total">
-                        <h4>Subtotal: <span>$170.00</span></h4>
-                    </div> --}}
-                    <div class="cart-btn btn-hover">
-                        <a class="theme-color" href="/cart">View cart</a>
-                    </div>
-                    {{!-- <div class="checkout-btn btn-hover">
-                        <a class="theme-color" href="/checkout">Checkout</a>
-                    </div> <br> --}}
-                    <div class="checkout-btn btn-hover">
-                        <a class="theme-color" href="/wishlist">Wishlist</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
                 <div class="breadcrumb-area bg-gray-4 breadcrumb-padding-1">
                     <div class="container">
                         <div class="breadcrumb-content text-center">
@@ -471,9 +765,9 @@
                                                     data-bs-toggle="tab">Address</a>
                                                 <a href="#payment-method"
                                                     data-bs-toggle="tab">Coupons</a>
-                                                {{!-- <a href="#address-edit"
-                                                    data-bs-toggle="tab">Address</a>
-                                                <a href="#account-info"
+                                                <a href="#address-edit"
+                                                    data-bs-toggle="tab">Wallet</a>
+                                                {{!-- <a href="#account-info"
                                                     data-bs-toggle="tab">Account
                                                     Details</a> --}}
                                                 <a href="/user-logout">Logout</a>
@@ -557,16 +851,18 @@
                                                                         <div
                                                                             class="col-md-8
                                                                             col-sm-12
-                                                                        
                                                                             profile-info">
                                                                             <div
-                                                                                class="header-fullname col-md-4
-                                                                                    col-sm-4
-                                                                                    col-xs-12
-                                                                                    stats-col" style="font-size: 1rem; justify-content: center;">{{user.name}}
-                                                                                </div>
-                                                                       
-                                                                            
+                                                                                class="header-fullname
+                                                                                col-md-4
+                                                                                col-sm-4
+                                                                                col-xs-12
+                                                                                stats-col"
+                                                                                style="font-size:
+                                                                                1rem;
+                                                                                justify-content:
+                                                                                center;">{{user.name}}
+                                                                            </div>
                                                                         </div>
                                                                         <div
                                                                             class="col-md-12
@@ -584,7 +880,9 @@
                                                                                         class="stats-value
                                                                                         pink">{{user.phone}}</div>
                                                                                     <div
-                                                                                        class="stats-title" style="font-size: 0.7rem;">Contact-NO:</div>
+                                                                                        class="stats-title"
+                                                                                        style="font-size:
+                                                                                        0.7rem;">Contact-NO:</div>
                                                                                 </div>
                                                                                 <div
                                                                                     class="col-md-4
@@ -595,85 +893,97 @@
                                                                                         class="stats-value
                                                                                         pink">{{user.email}}</div>
                                                                                     <div
-                                                                                        class="stats-title " style="font-size: 0.7rem;">Email</div>
+                                                                                        class="stats-title
+                                                                                        "
+                                                                                        style="font-size:
+                                                                                        0.7rem;">Email</div>
+                                                                                </div>
+                                                                                <div
+                                    class="middle-container d-flex justify-content-between align-items-center mt-3 p-2"  style="width: 32%;">
+                                    <div class="dollar-div px-3">
+
+                                        <div class="round-div">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-currency-rupee" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4v1.06Z" />
+                                            </svg>
+                                        </div>
+
+                                    </div>
+                                    <div class="d-flex flex-column text-right mr-2">
+                                        <span class="current-balance ml-2">Wallet Balance</span>
+                                        <span class="amount"><span class="dollar-sign">₹</span>{{wallet.wallet}}</span>
+                                    </div>
+
+                                </div>
+                                                                                <div
+                                                                                    class="col-md-4
+                                                                                    col-sm-4
+                                                                                    col-xs-12
+                                                                                    stats-col
+                                                                                    ">
+                                                                                    <div
+                                                                                        class="stats-value
+                                                                                        pink">{{user.referral}}</div>
+                                                                                    <div
+                                                                                        class="stats-title
+                                                                                        "
+                                                                                        style="font-size:
+                                                                                        0.7rem;">My
+                                                                                        Refferal
+                                                                                        ID
+                                                                                        :</div>
                                                                                 </div>
                                                                                 <div
                                                                                     class="col-md-4
                                                                                     col-sm-4
                                                                                     col-xs-12
-                                                                                    stats-col">
+                                                                                    stats-col
+                                                                                    ">
                                                                                     <div
                                                                                         class="stats-value
-                                                                                        pink">₹{{user.wallet}}</div>
+                                                                                        pink
+                                                                                        ">{{details.[0].name}}
+                                                                                    </div>
                                                                                     <div
-                                                                                        class="stats-title" style="font-size: 0.7rem;"> Wallet Balance</div>
-                                                                                </div>
-                                                                                   <div
-                                                                                    class="col-md-4
-                                                                                    col-sm-4
-                                                                                    col-xs-12
-                                                                                    stats-col " >
-                                                                                    <div
-                                                                                        class="stats-value
-                                                                                        pink">{{user.referral}}</div>
-                                                                                    <div
-                                                                                        class="stats-title  " style="font-size: 0.7rem;">My Refferal ID :</div>
-                                                                               
-                                                                                  
-
-                                                                                   </div>
-
-                                                                                   <div
-                                                                                    class="col-md-4
-                                                                                    col-sm-4
-                                                                                    col-xs-12
-                                                                                    stats-col " >
-                                                                          
-                                                                   
-                                                                               
-                                                                                      <div
-                                                                                        class="stats-value
-                                                                                        pink ">{{details.[0].name}}
-                                                                                        </div>
-                                                                                          <div
                                                                                         class="stats-value
                                                                                         pink">{{details.[0].address}}</div>
-                                                                                          <div
+                                                                                    <div
                                                                                         class="stats-value
                                                                                         pink">{{details.[0].pincode}}</div>
-                                                                                          <div
-                                                                                        class="stats-value
-                                                                                        pink ">{{details.[0].state}}</div>
-                                                                                          <div
-                                                                                        class="stats-value
-                                                                                        pink ">{{details.[0].numebr}}</div>
                                                                                     <div
-                                                                                    
-                                                                                        class="stats-title " style="font-size: 0.7rem;">My Address</div>
-
-                                                                                   </div>
-                                                                                    <div   class="col-md-4
+                                                                                        class="stats-value
+                                                                                        pink
+                                                                                        ">{{details.[0].state}}</div>
+                                                                                    <div
+                                                                                        class="stats-value
+                                                                                        pink
+                                                                                        ">{{details.[0].numebr}}</div>
+                                                                                    <div
+                                                                                        class="stats-title
+                                                                                        "
+                                                                                        style="font-size:
+                                                                                        0.7rem;">My
+                                                                                        Address</div>
+                                                                                </div>
+                                                                                <div
+                                                                                    class="col-md-4
                                                                                     col-sm-4
                                                                                     col-xs-12
-                                                                                    stats-col ">
-                                                                                               <a
-                                                                                href="/changepassword"
-                                                                                class="btn-sm
-                                                                                btn-palegreen
-                                                                                btn-sm
-                                                                                btn-follow">
-                                                                           
-                                                                                Reset Password
-                                                                            </a>
-                                                                                    </div>
-
-                                                                                    
-                                                                             
-
-                                                                                   
-                                                                              
+                                                                                    stats-col
+                                                                                    ">
+                                                                                    <a
+                                                                                        href="/changepassword"
+                                                                                        class="btn-sm
+                                                                                        btn-palegreen
+                                                                                        btn-sm
+                                                                                        btn-follow">
+                                                                                        Reset
+                                                                                        Password
+                                                                                    </a>
+                                                                                </div>
                                                                             </div>
-                                                                            
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -740,7 +1050,7 @@
                                                                     <td>
                                                                         {{#if_eq
                                                                         this.status
-                                                                        "cancelled"}}
+                                                                        "Cancelled"}}
                                                                         <p
                                                                             class="text-danger">Cancelled</p>
                                                                         {{/if_eq}}
@@ -933,8 +1243,12 @@
                                                                         {{!--
                                                                         {{else}}
                                                                         --}}
-                                                                        {{#if couponUsed}}
-                                                                        <p class="text-dark">Coupon Already Used</p>
+                                                                        {{#if
+                                                                        couponUsed}}
+                                                                        <p
+                                                                            class="text-dark">Coupon
+                                                                            Already
+                                                                            Used</p>
                                                                         {{else}}
                                                                         <button
                                                                             class="btn-sm
@@ -961,153 +1275,60 @@
                                                 </div>
                                                 <!-- Single Tab Content End -->
                                                 <!-- Single Tab Content Start -->
-                                                {{!-- <div class="tab-pane fade"
+                                                <div class="tab-pane fade"
                                                     id="address-edit"
                                                     role="tabpanel">
                                                     <div
                                                         class="myaccount-content">
-                                                        <h3>Billing Address</h3>
-                                                        <address>
-                                                            <p><strong>Alex
-                                                                    Tuntuni</strong></p>
-                                                            <p>1355 Market St,
-                                                                Suite 900 <br>
-                                                                San Francisco,
-                                                                CA 94103</p>
-                                                            <p>Mobile: (123)
-                                                                456-7890</p>
-                                                        </address>
-                                                        <a href="#"
-                                                            class="check-btn
-                                                            sqr-btn "><i
-                                                                class="fa
-                                                                fa-edit"></i>
-                                                            Edit Address</a>
+                                                        <h3>Wallet History</h3>
+
+                                                        <p>Wallet Balance: ₹ <span class="text-warning">{{wallet.wallet}}</span> </p>
+                                                        
+                                                       <div class="myaccount-table
+                                                        table-responsive
+                                                        text-center">
+                                                        <table id="example"
+                                                            class="table
+                                                            table-bordered"
+                                                            style="width:100%">
+                                                            <thead
+                                                                class="thead-light">
+                                                                <tr>
+                                                                    <th>ORDER-ID</th>
+                                                                    <th>DATE</th>
+                                                                    <th>ACTIVITY</th>
+                                                                    <th><i class="fas fa-arrow-down text-danger">&nbsp;</i>DEBIT</th> 
+                                                                    <th><i class="fas fa-arrow-up text-success">&nbsp;</i>CREDIT</th>
+                                                                    <th> ₹₹ AMOUNT</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                {{#each history}}
+                                                                <tr>
+                                                                    <td>{{this.walletHistory.orderId
+                                                                        }}</td>
+                                                                    <td>{{this.walletHistory.date
+                                                                        }}</td>
+                                                                    <td
+                                                                        >{{this.walletHistory.description
+                                                                        }}</td>
+                                                                    <td class="text-danger"> <b>{{this.walletHistory.debit
+                                                                        }}</b>
+                                                                    </td>
+                                                                    <td class="text-success"> <b>{{this.walletHistory.credit
+                                                                        }}</b></td>
+                                                                    <td class="text-info"> ₹ <b> {{this.walletHistory.amount
+                                                                        }}</b></td>
+                                                                    
+                                                                </tr>
+                                                                {{/each}}
+                                                            </tbody>
+                                                        </table>
                                                     </div>
-                                                </div> --}}
-                                                <!-- Single Tab Content End -->
-                                                <!-- Single Tab Content Start -->
-                                                {{!-- <div class="tab-pane fade"
-                                                    id="account-info"
-                                                    role="tabpanel">
-                                                    <div
-                                                        class="myaccount-content">
-                                                        <h3>Account Details</h3>
-                                                        <div
-                                                            class="account-details-form">
-                                                            <form action="#">
-                                                                <div
-                                                                    class="row">
-                                                                    <div
-                                                                        class="col-lg-6">
-                                                                        <div
-                                                                            class="single-input-item">
-                                                                            <label
-                                                                                for="first-name"
-                                                                                class="required">First
-                                                                                Name</label>
-                                                                            <input
-                                                                                type="text"
-                                                                                id="first-name"
-                                                                                />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div
-                                                                        class="col-lg-6">
-                                                                        <div
-                                                                            class="single-input-item">
-                                                                            <label
-                                                                                for="last-name"
-                                                                                class="required">Last
-                                                                                Name</label>
-                                                                            <input
-                                                                                type="text"
-                                                                                id="last-name"
-                                                                                />
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div
-                                                                    class="single-input-item">
-                                                                    <label
-                                                                        for="display-name"
-                                                                        class="required">Display
-                                                                        Name</label>
-                                                                    <input
-                                                                        type="text"
-                                                                        id="display-name"
-                                                                        />
-                                                                </div>
-                                                                <div
-                                                                    class="single-input-item">
-                                                                    <label
-                                                                        for="email"
-                                                                        class="required">Email
-                                                                        Addres</label>
-                                                                    <input
-                                                                        type="email"
-                                                                        id="email"
-                                                                        />
-                                                                </div>
-                                                                <fieldset>
-                                                                    <legend>Password
-                                                                        change</legend>
-                                                                    <div
-                                                                        class="single-input-item">
-                                                                        <label
-                                                                            for="current-pwd"
-                                                                            class="required">Current
-                                                                            Password</label>
-                                                                        <input
-                                                                            type="password"
-                                                                            id="current-pwd"
-                                                                            />
-                                                                    </div>
-                                                                    <div
-                                                                        class="row">
-                                                                        <div
-                                                                            class="col-lg-6">
-                                                                            <div
-                                                                                class="single-input-item">
-                                                                                <label
-                                                                                    for="new-pwd"
-                                                                                    class="required">New
-                                                                                    Password</label>
-                                                                                <input
-                                                                                    type="password"
-                                                                                    id="new-pwd"
-                                                                                    />
-                                                                            </div>
-                                                                        </div>
-                                                                        <div
-                                                                            class="col-lg-6">
-                                                                            <div
-                                                                                class="single-input-item">
-                                                                                <label
-                                                                                    for="confirm-pwd"
-                                                                                    class="required">Confirm
-                                                                                    Password</label>
-                                                                                <input
-                                                                                    type="password"
-                                                                                    id="confirm-pwd"
-                                                                                    />
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </fieldset>
-                                                                <div
-                                                                    class="single-input-item
-                                                                    btn-hover">
-                                                                    <button
-                                                                        class="check-btn
-                                                                        sqr-btn">Save
-                                                                        Changes</button>
-                                                                </div>
-                                                            </form>
-                                                        </div>
+                                                        
                                                     </div>
-                                                </div> <!-- Single Tab Content End -->
-                                                --}}
+                                                </div>
+                                                
                                             </div>
                                         </div> <!-- My Account Tab Content End -->
                                     </div>
@@ -1402,6 +1623,10 @@
             <script src="/User/js/plugins/slinky.min.js"></script>
             <script src="/User/js/plugins/ajax-mail.js"></script>
             <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+            <!-- MDB -->
+           <script
+              type="text/javascript"
+               src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.js"></script>
             <script
                 src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
             <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
