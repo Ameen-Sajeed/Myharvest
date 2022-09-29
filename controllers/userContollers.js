@@ -3,8 +3,8 @@ const userhelper = require("../helpers/userhelper")
 const paypal = require('paypal-rest-sdk')
 const { response } = require("../app")
 
-const niceInvoice = require('nice-invoice')
-const { Db } = require("mongodb")
+// const niceInvoice = require('nice-invoice')
+// const { Db } = require("mongodb")
 
 
 
@@ -1091,8 +1091,18 @@ const getChangePageuser = async(req,res)=>{
  
 const getInvoice = async(req,res)=>{
 
- 
-    res.send('user/invoice')
+
+    console.log(req.params.id,"jnnk");
+
+    let user = req.session.user
+    let products = await userhelper.getOrderProduct(req.params.id)
+    let orders = await userhelper.getOrderSummary(req.params.id)
+
+    console.log(products,"5555");
+
+    console.log(orders,"1111");
+  
+    res.render('user/invoice', { products, user,orders })
 
 
 }  

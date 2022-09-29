@@ -448,16 +448,15 @@
                                         justify-content-end text-white
                                         text-uppercase mb-0">Total
                                         paid:
-                                   {{#each orders}}  <span class="h2 mb-0 ms-2">₹{{this.totalAmount}}</span></h5> {{/each}}
-                                </div>
+                                   {{#each orders}}  <span class="h2 mb-0 ms-2">₹{{this.totalAmount}}</span></h5>                               </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
             <div>
-                <center>
-                            <a href="/invoice"><button class="btn-sm btn-success"> Print Invoice </button></a>
+                <center> 
+                            <a href="/invoice/{{this._id}}"><button class="btn-sm btn-success"> Print Invoice </button></a>{{/each}}
 
                 </center>
             </div>

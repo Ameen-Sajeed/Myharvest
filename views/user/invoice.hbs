@@ -4,10 +4,132 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Font Awesome -->
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+  rel="stylesheet"
+/>
+<!-- Google Fonts -->
+<link
+  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+  rel="stylesheet"
+/>
+<!-- MDB -->
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.css"
+  rel="stylesheet"
+/>
     <title>Document</title>
 </head>
 <body>
-    
-    <h1>HArvest Invoice</h1>
+    <div class="card" >
+  <div class="card-body">
+    <div class="container mb-5 mt-3">
+      <div class="row d-flex align-items-baseline">
+        <div class="col-xl-9">
+         {{#each orders}} <p style="color: #7e8d9f;font-size: 20px;">Invoice<strong>ID: #{{this._id}}</strong></p>{{/each}}
+        </div>
+        <div class="col-xl-3 float-end">
+          <a class="btn btn-light text-capitalize border-0" data-mdb-ripple-color="dark" download="Invoice_Harvest" href=""><i
+              class="fas fa-print text-primary" ></i> Print</a>
+               <a class="btn btn-light text-capitalize" data-mdb-ripple-color="dark" href="/"><i
+              class="fas fa-archway text-danger"></i> Back to Home</a>
+        </div>
+      
+        <hr>
+      </div>
+
+      <div class="container">
+        <div class="col-md-12">
+          <div class="text-center">
+            <h2 class="text-success">Harvest</h2>
+            <p class="pt-0">harvestgrocery.tk</p>
+          </div>
+
+        </div>
+
+
+        <div class="row">
+          <div class="col-xl-8">
+            <ul class="list-unstyled">
+              <li class="text-muted">To: <span style="color:#40dc90 ;">{{user.name}}</span></li>
+              <li class="text-muted">Email: {{user.email}}</li>
+              <li class="text-muted"><i class="fas fa-phone"></i> {{user.phone}}</li>
+            </ul>
+          </div>
+          <div class="col-xl-4">
+            <p class="text-muted">Invoice</p>
+            <ul class="list-unstyled">
+              {{#each orders}}<li class="text-muted"><i class="fas fa-circle" style="color:#40dc90 ;"></i> <span
+                  class="fw-bold">ID:</span>{{this._id}}</li>
+              <li class="text-muted"><i class="fas fa-circle" style="color:#40dc90 ;"></i> <span
+                  class="fw-bold">Date: {{this.date}} </span></li>
+              <li class="text-muted"><i class="fas fa-circle" style="color:#40dc90 ;"></i> <span
+                  class="me-1 fw-bold"> Payment Method:</span><span class="badge bg-warning text-black fw-bold">
+                  {{this.paymentMethod}}</span></li>{{/each}}
+            </ul>
+          </div>
+        </div>
+
+        <div class="row my-2 mx-1 justify-content-center">
+          <table class="table table-striped table-borderless">
+            <thead style="background-color:#40dc90 ;" class="text-white">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Qty</th>
+                <th scope="col">Sale Price</th>
+                <th scope="col">M.R.P</th>
+              </tr>
+            </thead>
+            <tbody>
+                {{#each products}}
+              <tr>
+                <th scope="row">{{inc @index}}</th>
+                <td>{{this.product.name}}</td>
+                <td>{{this.quantity}}</td>
+                <td>S.P :₹{{this.product.originalPrice}}</td>
+                <td>M.R.P :₹{{this.product.price}}</td>
+              </tr>
+           {{/each}}
+           
+            </tbody>
+
+          </table>
+        </div>
+        <div class="row">
+          <div class="col-xl-8">
+            <p class="ms-3">Add additional notes and payment information</p>
+
+          </div>
+          <div class="col-xl-3">
+            <ul class="list-unstyled">
+              {{!-- <li class="text-muted ms-3"><span class="text-black me-4">SubTotal</span>$1110</li> --}}
+              {{!-- <li class="text-muted ms-3 mt-2"><span class="text-black me-4">Tax(15%)</span>$111</li> --}}
+            </ul>
+           {{#each orders}} <p class="text-black float-start"><span class="text-black me-3"> Total Amount</span><span
+                style="font-size: 25px;"> ₹ {{this.totalAmount}}</span></p>{{/each}}
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-xl-10">
+            <center>
+                       <p>Thank you for your purchase</p>
+
+            </center>
+          </div>
+      
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- MDB -->
+<script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.js"
+></script>
 </body>
 </html>

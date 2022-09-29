@@ -1496,7 +1496,7 @@ salesMonthlyGraph: () => {
           }
         ]).toArray()
   
-        console.log(categoryName, "2222222222222");
+        console.log(categoryName, "222222222222211111");
         resolve(categoryName)
   
       })

@@ -116,7 +116,7 @@ router.post('/resendotp',postresendOtp)
 
 router.get('/changePageuser',getChangePageuser)
 
-router.get('/invoice',getInvoice)
+router.get('/invoice/:id',getInvoice)
 
 
 module.exports = router;
